@@ -348,7 +348,7 @@ button.shepe:hover{
     }
     .group3 img{
         position: absolute;
-        top: -1px;
+        top: 0px;
         right: -25px;
     }
     
@@ -357,6 +357,11 @@ button.shepe:hover{
 @media(max-width:370px){
     .group3 h2{
         font-size: medium;
+    }
+    .group3 img{
+        position: absolute;
+        top: 0px;
+        right: -25px;
     }
 }
 @media(max-width:374px){
@@ -367,7 +372,7 @@ button.shepe:hover{
         left: 250px; }
         .group3 img{
         position: absolute;
-        top: -2px;
+        top: -1px;
         right: -25px;
 
 }
