@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="assets/WhatsApp Image 2020-03-30 at 3.44.24 PM.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="css2/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+    <title>Systems Engineering Website</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-flex">
+          <div class="logo-container">
+            <img class="logos" src="assets2/sys.png" alt="Logo">
+            <img class="logos" src="assets2/lag.png" alt="Logo">
+            <div class="header-text">
+              <p class="dept">DEPARTMENT OF SYSTEMS ENGINEERING</p>
+              <h1 class="uni">UNIVERSITY OF LAGOS</h1>
+            </div>
+          </div>
+
+          <div class="login-links">
+            <ul class="login-list">
+              <li class="login-list-item"><a href="#">Staff</a></li>
+              <li class="login-list-item"><a href="#">Students</a></li>
+              <li class="login-list-item"><a href="#">Alumni</a></li>
+            </ul>
+          </div>
+
+          <div class="menu-container" id="dropdown">
+            <p class="menu-text">MENU</p>
+            <a class="menu" href="javascript:;" onclick="toggleDropdown()"><img src="assets2/icon-hamburger.svg" alt="Icon"></a>
+            <a class="menu2" href="javascript:;" onclick="toggleDropdown()"><img src="assets2/icon-close.svg" alt="Icon"></a>
+          </div>
+
+          <div class="search" id="input">
+            <div class="search-container">
+              <input class="search-input" type="text" placeholder="Search...">
+            </div>
+            <a class="search-icon" href="javascript:;" onclick="showsearch()"><img class="find" src="assets2/Search.svg"/></a>
+            <!-- <a class="search-icon" href="#" onclick="showsearch()"><img class="see" src="https://img.icons8.com/material-sharp/24/ffffff/search.png"/></a> -->
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <nav class="navbar" id="navbar-toggle">
+      <div class="container">
+        <ul class="navbar-list" id="nav-list">
+          <li class="nav-list-item none"><a href="#">Home</a></li>
+          <li class="nav-list-item"><a href="#">Gallery</a></li>
+          <li class="nav-list-item"><a href="#">Projects</a></li>
+          <li class="dropDown">
+            <button class="drop-btn top">Programs <img class="drop" src="assets2/chevron.svg"/></button>
+
+            <div class="dropDown-content">
+              <a class="filter obj" href="#">Obejctives</a>
+              <a class="filter" href="#">Undergraduate</a>
+              <a class="filter" href="#">Postgraduate</a>
+              <a class="filter" href="#">Admission</a>
+            </div>
+          </li>
+          <li class="dropDown2">
+            <button class="drop-btn">About <img  class="drop" src="assets2/chevron.svg"/></button>
+
+            <div class="dropDown-content2">
+              <a class="filter obj" href="#">The Executives</a>
+              <a class="filter" href="#">ASES Programmes</a>
+            </div>
+          </li>
+
+          <div class="line"></div>
+
+          <li class="top student"><a href="#">Students</a></li>
+          <li class="top"><a href="#">Staff</a></li>
+          <li class="top"><a href="#">Alumni</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section>
+      <div class="container">
+        <div class="form-flex">
+          <div class="nothing"></div>
+
+          <div class="from-container">
+            <form class="this-form">
+              <div class="logo-form-container">
+                <img class="logo-form" src="assets2/sys.png" alt="Logo">
+                <img class="logo-form" src="assets2/lag.png" alt="Logo">
+              </div>
+              <h1 class="comp">Complaint Form</h1>
+              <input id="email" class="email-input" type="email" placeholder="Enter your email..." required>
+              <p class="or">OR</p>
+              <div class="check-container">
+                <input id="checkbox" type="checkbox"> <p class="anonymous">Send as anonymous</p>
+              </div>
+              <a class="dasho" href="index.html">To dashboard</a>
+              <textarea rows="8" cols="80" placeholder="Enter complaint..." required></textarea>
+              <div class="submit-container">
+                <p class="paragraph">Send to: </p>
+                <select class="form-select" class="sender">
+                  <option value="">HOD</option>
+                  <option value="">Course Adviser</option>
+                  <option value="">Supervisor</option>
+                  <input class="btn" type="submit" value="SUBMIT">
+                  
+                </select>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="go">
+          <div class="goop">
+            <img class="footer-logos" src="assets2/sys.png" alt="Logo">
+            <img class="footer-logos" src="assets2/lag.png" alt="Logo">
+            <div class="header-text footer">
+              <p class="footer-dept">DEPARTMENT OF <br>SYSTEMS ENGINEERING</p>
+              <h1 class="footer-uni">UNIVERSITY OF LAGOS</h1>
+            </div>
+          </div>
+
+          <div class="others">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">History</a></li>
+              <li><a href="#">VOSO CFP</a></li>
+              <li><a href="#">Downloads</a></li>
+              <li><a href="#">News</a></li>
+              <li><a href="#">Jobs</a></li>
+            </ul>
+          </div>
+
+          <div class="others">
+            <ul>
+              <li><a href="#">Gallery</a></li>
+                <li><a href="#">Staff</a></li>
+                  <li><a href="#">Seminars</a></li>
+                  <li><a href="#">Projects</a></li>
+                  <li><a href="#">Alumni page</a></li>
+                  <li><a href="#">Archives</a></li>
+                </ul>
+            </div>
+
+            <div class="others">
+              <button class="pro">Programs <img src="assets2/chevron.svg" alt=""></button>
+              <div class="saved">
+                <a class="over" href="#">Objectives</a>
+                <a class="over" href="#">Undergraduate</a>
+                <a class="over" href="#">Postgraduate</a>
+                <a class="over" href="#">Admission</a>
+              </div>
+            </div>
+
+            <div class="others">
+              <button class="pro">About ASES <img src="assets2/chevron.svg" alt=""></button>
+              <div class="saved">
+                <a class="over" href="#">The Executives</a>
+                <a class="over" href="#">ASES Programmes</a>
+              </div>
+            </div>
+
+            <div class="logo-container yeba">
+              <img class="logos" src="assets2/sys.png" alt="Logo">
+              <img class="logos" src="assets2/lag.png" alt="Logo">
+              <div class="header-text">
+                <p class="dept">DEPARTMENT OF SYSTEMS ENGINEERING</p>
+                <h1 class="uni">UNIVERSITY OF LAGOS</h1>
+              </div>
+            </div>
+        </div>
+      </div>
+
+    </footer>
+
+
+    <script src="code.js" charset="utf-8"></script>
+  </body>
+</html>
