@@ -341,6 +341,9 @@ input.subba{
 
 }
 
+h1.nan,h1.nana,h1.nanop{
+    font-size: 18px;
+}
 
 input[type=submit]:hover{
     transform: scale(1.1); 
@@ -360,6 +363,7 @@ input.subba:hover {
     transform: scale(1.1); 
     cursor: pointer;
 }
+
 
 
 @media(max-width:768px){
