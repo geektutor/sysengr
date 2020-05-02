@@ -32,6 +32,15 @@
     
     font-weight: 900;
 }
+
+.white-container{
+    -webkit-box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
+    background-color: #fff;
+    padding-top: 10px;
+    
+}
   /** my own**/
 .flex{
     display: flex;
@@ -326,19 +335,22 @@ p.boss{
     margin-bottom: 20px;
 
 }
-.nanop{
-    display: none;
-}
-.wonto{
-    display: none;
 
-}
 input.subba{
     width: 35%;
     margin: auto;
     margin-bottom: 30px;
     transition: 0.2s ease-in-out;
 
+}
+.nan.h{
+    color: #fb5900;
+}
+.nan.h.l{
+    margin-left: 5px;
+}
+.nan.h.r{
+    margin-right: 21px;
 }
 
 h1.nan,h1.nana,h1.nanop{
@@ -413,26 +425,13 @@ input.subba:hover {
     }
     .white.sec{
         width: 90%;
+        margin-left: auto;
     }
     .white{
         margin: auto;
     }
-    .ona,.towa{
-        width: 100%;
-    }
-    .nana{
-        display: none;
-    }
-    .nanop{
-        display: block;
-        margin: 10px;
-        
-    }
-    .wonto{
-        display: block;
-        width: 100%;
 
-    }
+    
     
 }
 
