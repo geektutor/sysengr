@@ -166,43 +166,49 @@ input.search-input {
   font-family: inherit;
   width: 100px; }
 
-.search-container {
-  overflow: hidden;
-  display: none;
-  -webkit-animation: slide-out 0.8s ease-in-out;
-  animation: slide-out 0.8s ease-in-out; }
+  .search-container {
+    overflow: hidden;
+    display: none;
+    -webkit-animation: slide-out 0.8s ease-in-out;
+    animation: slide-out 0.8s ease-in-out; }
 
-.search.show .search-container {
-  display: inline-block;
-  -webkit-animation: slide 0.8s ease-in-out;
-  animation: slide 0.8s ease-in-out; }
+  .search.show.ram .search-container {
+    -webkit-animation: slide-out 0.8s ease-in-out;
+    animation: slide-out 0.8s ease-in-out;
+    width: 0;
+  }
 
-.search.show img.find {
-  margin-top: -20px; }
+  .search.show .search-container {
+    display: inline-block;
+    -webkit-animation: slide 0.8s ease-in-out;
+    animation: slide 0.8s ease-in-out; }
 
-.menu-container {
-  display: none; }
+  .search.show img.find {
+    margin-top: -20px; }
 
-@-webkit-keyframes slide {
-  from {
-    width: 0; }
-  to {
-    width: 100px; } }
-@keyframes slide {
-  from {
-    width: 0; }
-  to {
-    width: 100px; } }
-@-webkit-keyframes slide-out {
-  from {
-    width: 100px; }
-  to {
-    width: 0; } }
-@keyframes slide-out {
-  from {
-    width: 100px; }
-  to {
-    width: 0; } }
+  .menu-container {
+    display: none; }
+
+  @-webkit-keyframes slide {
+    from {
+      width: 0; }
+    to {
+      width: 100px; } }
+  @keyframes slide {
+    from {
+      width: 0; }
+    to {
+      width: 100px; } }
+  @-webkit-keyframes slide-out {
+    from {
+      width: 100px; }
+    to {
+      width: 0; } }
+  @keyframes slide-out {
+    from {
+      width: 100px; }
+    to {
+      width: 0; } }
 section {
   padding: 40px 0;
   background: #F0F3F5; }
@@ -335,7 +341,7 @@ img {
     font-size: 80px;
     font-weight: 400;
   }
-  
+
   .wrap2{
       width: 30%;
       /* margin-left: 10%; */
@@ -663,71 +669,89 @@ img {
     font-weight: 700;
     margin-left: -10px;}
 
-  nav.navbar.responsive ul.navbar-list {
-    flex-direction: column;
-    width: 160px;
-    margin-left: -20px;
-    background: rgba(0, 0, 0, 0.75);
-    height: auto;
-    -webkit-animation: slide2 0.3s ease;
-    animation: slide2 0.3s ease;
-    position: absolute;
-    z-index: 1;
-    padding-left: 20px;
-    padding-bottom: 50px;
-    padding-top: 10px;}
+    nav.navbar.responsive ul.navbar-list {
+      flex-direction: column;
+      width: 160px;
+      margin-left: -20px;
+      background: rgba(0, 0, 0, 0.75);
+      height: auto;
+      transform: translateX(0);
+      -webkit-animation: slide2 0.8s ease;
+      animation: slide2 0.8s ease;
+      position: absolute;
+      z-index: 1;
+      padding-left: 20px;
+      padding-bottom: 50px;
+      padding-top: 10px;}
 
-  @-webkit-keyframes slide2 {
-    from {
-      width: 0; }
-    to {
-      width: 150px; } }
-  @keyframes slide2 {
-    from {
-      width: 0; }
-    to {
-      width: 150px; } }
-  nav.navbar.responsive {
-    display: block;
-    background: none;
-    padding: 0; }
-
-  nav.navbar.responsive ul.navbar-list li.dropDown,
-  nav.navbar.responsive ul.navbar-list li.dropDown2 {
-    position: relative;
-    top: 20px;
-    margin: 0; }
-    nav.navbar.responsive ul.navbar-list li.dropDown button.drop-btn,
-    nav.navbar.responsive ul.navbar-list li.dropDown2 button.drop-btn {
-      background: transparent;
-      font-weight: 700;
-      margin-bottom: 15px;
-      margin-top: 10px;
-      }
-
-    nav.navbar.responsive ul.navbar-list li.dropDown button.drop-btn.top {
-      margin-top: 0;
+    nav.navbar.responsive.ness ul.navbar-list {
+      transform: translateX(-200px);
+      -webkit-animation: slide3 0.8s ease;
+      animation: slide3 0.8s ease;
     }
-  nav.navbar.responsive ul.navbar-list li.nav-list-item {
-    /* position: relative; */
-    top: 30px;
-    line-height: 2;
-    font-weight: 400;
-    padding: 0;
-     }
-  nav.navbar.responsive ul.navbar-list li.nav-list-item.none {
-    display: none; }
-  nav.navbar.responsive ul.navbar-list li.top {
-    margin-top: 20px;
-    display: block; }
-    nav.navbar.responsive ul.navbar-list li.top a {
-      text-decoration: none;
-      font-size: 18px;
-      color: #fff;
-      font-weight: 700; }
 
-  nav.navbar.responsive ul.navbar-list li.top.student {
-     }
+    @-webkit-keyframes slide2 {
+      from {
+        transform: translateX(-200px); }
+      to {
+        transform: translateX(0);} }
+    @keyframes slide2 {
+      from {
+        transform: translateX(-200px); }
+      to {
+        transform: translateX(0);} }
+
+    @-webkit-keyframes slide3 {
+      from {
+        transform: translateX(0)); }
+      to {
+        transform: translateX(-200px);} }
+    @keyframes slide3 {
+      from {
+        transform: translateX(0); }
+      to {
+        transform: translateX(-200px);} }
+        nav.navbar.responsive {
+          display: block;
+          background: none;
+          padding: 0; }
+
+        nav.navbar.responsive ul.navbar-list li.dropDown,
+        nav.navbar.responsive ul.navbar-list li.dropDown2 {
+          position: relative;
+          top: 4px;
+          margin: 0; }
+          nav.navbar.responsive ul.navbar-list li.dropDown button.drop-btn,
+          nav.navbar.responsive ul.navbar-list li.dropDown2 button.drop-btn {
+            background: transparent;
+            font-weight: 400;
+            margin-bottom: 5px;
+            margin-top: 10px;
+            }
+
+          nav.navbar.responsive ul.navbar-list li.dropDown button.drop-btn.top {
+            margin-top: 0;
+          }
+        nav.navbar.responsive ul.navbar-list li.nav-list-item {
+          /* position: relative; */
+          top: 30px;
+          line-height: 1.5;
+          font-weight: 400;
+          padding: 0;
+           }
+        nav.navbar.responsive ul.navbar-list li.nav-list-item.none {
+          display: none; }
+        nav.navbar.responsive ul.navbar-list li.top {
+          margin-top: 5px;
+          display: block; }
+          nav.navbar.responsive ul.navbar-list li.top a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 400; }
+
+        nav.navbar.responsive ul.navbar-list li.top.student {
+           }
 
   .line {
     width: 130px;
@@ -756,15 +780,46 @@ img {
       margin-top: 0;
     }
 
-  .menu-container.responsive a.menu {
-    display: none; }
+    .menu-container.responsive a.menu {
+      display: none; }
 
-  .menu-container.responsive a.menu2,
-  .menu-container.responsive p.menu-text {
-    display: inline-block; }
+    .menu-container.responsive.close a.menu {
+      display: block;
+      transform: translateX(0);
+      -webkit-animation: slide100 0.4s ease;
+      animation: slide100 0.4s ease;
+    }
 
-  .menu-container.responsive a.menu2 {
-    margin-left: 50px; }
+    @-webkit-keyframes slide100 {
+      from {
+        transform: translateX(100px); }
+      to {
+        transform: translateX(0);} }
+    @keyframes slide100 {
+      from {
+        transform: translateX(100px); }
+      to {
+        transform: translateX(0);} }
+
+    .menu-container.responsive.close a.menu2,
+    .menu-container.responsive.close p.menu-text {
+      display: none;
+    }
+
+    .menu-container.responsive a.menu2,
+    .menu-container.responsive p.menu-text {
+      display: inline-block;
+      transform: translateX(0);
+      -webkit-animation: slide2 0.8s ease;
+      animation: slide2 0.8s ease;}
+
+    .menu-container.responsive a.menu2 {
+      margin-left: 70px;
+      width: 16px;}
+
+    .menu-container.responsive a.menu2 img {
+      width: 100%
+    }
 
   h1.news {
     font-size: 14px;
@@ -877,7 +932,9 @@ img {
       display: none;
     }
     .others {
-      width: 50%;
+      width: 90%;
+      margin: auto;
+      font-weight: 400;
       margin-bottom: 20px;
     }
 
@@ -905,6 +962,11 @@ img {
 
   button.pro {
     cursor: pointer;
+    font-weight: 400;
+  }
+
+  ul li a {
+    font-weight: 400
   }
 
 /*# sourceMappingURL=app.css.map */
