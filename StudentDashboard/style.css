@@ -3,7 +3,7 @@
     padding: 0;
     color: #1B1B1B;
     font-family: 'Source Sans Pro', sans-serif;
-    
+
 }
 
 .drip{
@@ -12,24 +12,24 @@
 }
 
 #group,#group2{
-    
+
     display: flex;
     justify-content: center;
 }
 
 #group img{
     margin-left: 2px;
-   
+
 }
 #group2 img{
     margin-left: 2px;
-    
+
 }
 
 .smp{
 
     font-size: smaller;
-    
+
     font-weight: 900;
 }
 
@@ -39,7 +39,7 @@
     box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
     background-color: #fff;
     padding-top: 10px;
-    
+
 }
   /** my own**/
 .flex{
@@ -95,7 +95,7 @@ hr{
     height: 200px;
     background-color: grey;
     margin: 10px;
-    
+
 }
 form{
     width: 60%;
@@ -132,7 +132,7 @@ input[type=submit]{
 
 p.boss{
     font-weight: bold;
-    
+
 }
 
 .group3{
@@ -151,7 +151,7 @@ p.boss{
       display: flex;
       margin-bottom: 15px;
       width: 100%;
-      
+
   }
   a.project,a.appr{
       text-decoration: none;
@@ -182,14 +182,14 @@ p.boss{
     width: 80%;
     transition: 0.2s ease-in-out;
     border: transparent;
-    
-    
+
+
 }
 
 .my-flex {
     display: flex;
     width: 250px;
-    
+
 }
 .txt{
     margin-top: 5px;
@@ -197,33 +197,33 @@ p.boss{
 
 .my-flex {
         flex-direction: column;
-        
-       
+
+
         background: #fff;
         padding: 30px 0;
         position: relative;
         padding-left: 20px;
-        
-         
+
+
 }
-   
+
 
 .my-flex.zind .drip {
-  
+
   position: absolute;
   top: 100px;
-  left: 20px; 
+  left: 20px;
 }
 
 .my-flex.zind .drip {
   top: 10px;
-  left: 210px; 
+  left: 210px;
 }
 
 .part2{
     width: 85%;
     background-color: #f0f3f5;
-    
+
 
 }
 .overall{
@@ -249,7 +249,7 @@ p.boss{
     box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
     background-color: #fff;
     padding-top: 5px;
-    
+
 }
 .lock{
     width: 15px;
@@ -259,7 +259,7 @@ p.boss{
     width: 5%;
     text-align: center;
     color: #1B1B1B ;
-    
+
 }
 .fe{
     width: 35%;
@@ -275,7 +275,7 @@ p.boss{
 }
 .flp{
     display: flex;
-    
+
 }
 
 .blue-box{
@@ -319,8 +319,38 @@ p.boss{
     padding: 30px 0;
     position: relative;
     padding-left: 20px;
-    
+    transform: translateX(0);
+    -webkit-animation: slide2 0.8s ease;
+    animation: slide2 0.8s ease;
  }
+
+ .respod.oya {
+   transform: translateX(-400px);
+   -webkit-animation: slide3 0.8s ease;
+   animation: slide3 0.8s ease;
+ }
+
+ @-webkit-keyframes slide3 {
+   from {
+     transform: translateX(0);; }
+   to {
+     transform: translateX(-400px);} }
+ @keyframes slide3 {
+   from {
+     transform: translateX(0); }
+   to {
+     transform: translateX(-400px);} }
+
+ @-webkit-keyframes slide2 {
+   from {
+     transform: translateX(-200px); }
+   to {
+     transform: translateX(0);} }
+ @keyframes slide2 {
+   from {
+     transform: translateX(-200px); }
+   to {
+     transform: translateX(0);} }
  .respod{
 
     width: 230px;
@@ -331,13 +361,13 @@ p.boss{
     font-weight: 900;
 }
 .ge, .ae, .pe,.se,.re{
-    
+
     margin-bottom: 20px;
 
 }
 
 input.subba{
-    width: 35%;
+    width: 40%;
     margin: auto;
     margin-bottom: 30px;
     transition: 0.2s ease-in-out;
@@ -358,21 +388,21 @@ h1.nan,h1.nana,h1.nanop{
 }
 
 input[type=submit]:hover{
-    transform: scale(1.1); 
+    transform: scale(1.1);
     cursor: pointer;
     border: transparent;
     outline: none;
 
 }
 button.shepe:hover{
-    transform: scale(1.1); 
+    transform: scale(1.1);
     cursor: pointer;
     outline: none;
 
 
 }
 input.subba:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
     cursor: pointer;
 }
 
@@ -388,7 +418,7 @@ input.subba:hover {
     .dropdownLink{
         display: block;
     }
-    
+
     .dropdownLink {
         display: none;
         position: absolute;
@@ -397,16 +427,16 @@ input.subba:hover {
     .part2 .dropdownLink2 {
         display: block;
         top: 25px;
-        left: 40px 
+        left: 40px
     }
     .fe{
         width: 25%;
         margin-bottom: 10px;
-    
+
     }
     .ge {
         width: 18%;
-        
+
     }
     .ge, .ae, .pe,.se{
         margin-left: 3px;
@@ -414,7 +444,7 @@ input.subba:hover {
     .extra{
         font-size: smaller;
     }
-    
+
     .group3 h2{
         font-size: large;
     }
@@ -431,8 +461,8 @@ input.subba:hover {
         margin: auto;
     }
 
-    
-    
+
+
 }
 
 @media(max-width:370px){
@@ -451,5 +481,5 @@ input.subba:hover {
 *{
 
     font-family: 'Source Sans Pro', sans-serif;
-    
+
 }
