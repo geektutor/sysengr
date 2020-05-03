@@ -5,7 +5,7 @@
 html {
   box-sizing: border-box;
   scroll-behavior: smooth; }
-  
+
   html body {
     font-family: "Source Sans Pro", sans-serif;
     font-size: 14px;
@@ -167,400 +167,52 @@ input.search-input {
   font-family: inherit;
   width: 100px; }
 
-.search-container {
-  overflow: hidden;
-  display: none;
-  -webkit-animation: slide-out 0.8s ease-in-out;
-  animation: slide-out 0.8s ease-in-out; }
+  .search-container {
+    overflow: hidden;
+    display: none;
+    -webkit-animation: slide-out 0.8s ease-in-out;
+    animation: slide-out 0.8s ease-in-out; }
 
-.search.show .search-container {
-  display: inline-block;
-  -webkit-animation: slide 0.8s ease-in-out;
-  animation: slide 0.8s ease-in-out; }
+  .search.show.ram .search-container {
+    -webkit-animation: slide-out 0.8s ease-in-out;
+    animation: slide-out 0.8s ease-in-out;
+    width: 0;
+  }
 
-.search.show img.find {
-  margin-top: -20px; }
+  .search.show .search-container {
+    display: inline-block;
+    -webkit-animation: slide 0.8s ease-in-out;
+    animation: slide 0.8s ease-in-out; }
 
-.menu-container {
-  display: none; }
+  .search.show img.find {
+    margin-top: -20px; }
 
-@-webkit-keyframes slide {
-  from {
-    width: 0; }
-  to {
-    width: 100px; } }
-@keyframes slide {
-  from {
-    width: 0; }
-  to {
-    width: 100px; } }
-@-webkit-keyframes slide-out {
-  from {
-    width: 100px; }
-  to {
-    width: 0; } }
-@keyframes slide-out {
-  from {
-    width: 100px; }
-  to {
-    width: 0; } }
+  .menu-container {
+    display: none; }
+
+  @-webkit-keyframes slide {
+    from {
+      width: 0; }
+    to {
+      width: 100px; } }
+  @keyframes slide {
+    from {
+      width: 0; }
+    to {
+      width: 100px; } }
+  @-webkit-keyframes slide-out {
+    from {
+      width: 100px; }
+    to {
+      width: 0; } }
+  @keyframes slide-out {
+    from {
+      width: 100px; }
+    to {
+      width: 0; } }
 section {
   padding: 40px 0;
   background: #F0F3F5; }
-
-h1.news {
-  font-size: 24px;
-  font-weight: 400;
-  display: inline-block; }
-  h1.news::after {
-    content: "";
-    border: none;
-    border-left: 2px solid #BAB5B4;
-    margin: 0 5px;
-    height: 2px; }
-
-p.all {
-  font-size: 20px;
-  color: #1599DE;
-  display: inline-block;
-  margin-bottom: 30px; }
-
-img.owl-img {
-  width: 100%;
-  height: 100%; }
-
-.mySlides {
-  display: none; }
-
-img {
-  vertical-align: middle; }
-
-.slideshow-container {
-  position: relative;
-  margin: auto; }
-
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 60px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none; }
-
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px; }
-
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8); }
-
-.text {
-  color: #f2f2f2;
-  font-size: 24px;
-  padding: 30px 0;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6); }
-  .text p {
-    margin-left: 70px; }
-
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: transparent;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease; }
-
-.active,
-.dot:hover {
-  background-color: #fff; }
-
-.owl-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto; }
-
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s; }
-
-@-webkit-keyframes fade {
-  from {
-    opacity: 0.4; }
-  to {
-    opacity: 1; } }
-@keyframes fade {
-  from {
-    opacity: 0.4; }
-  to {
-    opacity: 1; } }
-.round {
-  background: none;
-  position: absolute;
-  z-index: 2;
-  margin-top: -30px;
-  right: 50px; }
-
-  .wrap{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-  }
-  .box{
-      width: 68%;
-  }
-  .boxx{
-      /* margin: 20px; */
-      /* margin-left: 40px; */
-      width: 100%;
-      background: white;
-      padding: 20px 0;
-      border-radius: 10px;
-  }
-  .boxx h1{
-      text-align: center;
-      font-size: 30px;
-  }
-
-  i.fa.fa-quote-right {
-    margin-left: 20px
-  }
-  .boxx .one{
-      height: 3px;
-      background-color: rgba(218, 131, 131, 0.356);
-      width: 60%;
-      margin-left: 20%;
-  }
-  .boxx .fa{
-      color: rgba(218, 131, 131, 0.356);
-      font-size: 20px;
-  }
-  .fa-quote-left{
-      margin-left: 90%;
-      transform: rotate(180deg)
-  }
-  .fa-quote-right{
-      padding-top: 10px;
-      padding-bottom: 20px;
-      transform: rotateY(180deg)
-  }
-  .boxx p{
-      font-size: 18px;
-      width: 90%;
-      margin: auto;
-      padding-bottom: 20px;
-  }
-  .boxx .two{
-      display: flex;
-      margin-left: 10%;
-  }
-  .boxx img{
-      border-radius: 50%;
-      width: 80px;
-  }
-
-  .three {
-    margin-left: 90px
-  }
-
-  .boxx .three{
-      margin-top: 15px;
-
-  }
-  .three .one{
-      width: 90%;
-      margin-left: 6%;
-  }
-  .three h1{
-      font-family: "Noto Serif", serif;
-      font-size: 20px;
-      text-align: center;
-  }
-  .wrap2{
-      width: 30%;
-      /* margin-left: 10%; */
-  }
-  .boxx2{
-      margin-top: 20px;
-      margin-top: 40px;
-      /* margin-left: 40px; */
-      width: 100%;
-      background: white;
-      padding: 20px 0;
-      border-radius: 10px;
-  }
-  .boxx2 h1{
-      text-align: center;
-      font-size: 28px;
-  }
-  .boxx2 .one{
-      height: 3px;
-      background-color: rgba(218, 131, 131, 0.356);
-      width: 40%;
-      margin-left: 30%;
-  }
-  .boxx2 p{
-      font-size: 18px;
-      margin: auto;
-      margin-top: 20px;
-      width: 90%;
-      padding-bottom: 20px;
-  }
-  .boxx5{
-      /* margin: 20px; */
-      margin-top: 40px;
-      /* margin-left: 40px; */
-      width: 100%;
-      background: white;
-      padding: 20px 0;
-      border-radius: 10px;
-      text-align: center;
-  }
-  .boxx5 h1{
-      text-align: center;
-      font-size: 30px;
-  }
-  .boxx5 .one{
-      height: 3px;
-      background-color: rgba(218, 131, 131, 0.356);
-      width: 40%;
-      margin-left: 30%;
-  }
-
-  #test{
-  				Height: 200px;
-  				width: 80%;
-  				margin-top: 20px;
-  				padding: 10px;
-  				}
-
-  .box2{
-      width: 100%;
-      /* margin-top: 20px; */
-      background: white;
-      height: 150px;
-      padding: 20px 0;
-      border-radius: 10px;
-  }
-  .box2 div{
-      display: flex;
-      width: 90%;
-      margin: auto;
-      margin-bottom: 20px;
-  }
-
-  img.shift {
-    margin: 0 20px;
-  }
-  .box2 .fa-comment{
-      font-size: 30px;
-      margin-top: -10px;
-      transform: rotateY(180deg);
-      color: rgba(95, 91, 91, 0.479);
-  }
-  .box2 .fa-user{
-      font-size: 13px;
-      margin-left: -20px;
-      margin-right: 30px;
-      color: rgb(48, 177, 228);
-  }
-  .box2 p{
-      margin: auto;
-      margin-bottom: 20px;
-      font-size: 16px;
-      width: 90%;
-
-  }
-  .box2 a {
-    text-decoration: none;
-    color: rgb(48, 177, 228);
-  }
-  .box3{
-      width: 100%;
-      margin-top: 20px;
-      background: white;
-      height: 360px;
-      padding: 20px 0;
-      border-radius: 10px;
-  }
-
-  i.far.fa-newspaper {
-    margin: 0 20px;
-  }
-  .box3 div{
-      display: flex;
-      margin-top: 20px;
-      margin-bottom: 20px;
-  }
-  .box3 p{
-      width: 90%;
-      margin: auto;
-      margin-bottom: 20px;
-      font-size: 16px;
-  }
-  .box3 a {
-      text-decoration: none;
-      color: rgb(48, 177, 228);
-  }
-
-  .box3 .fa-newspaper{
-      color: rgb(48, 177, 228);
-      font-size: 20px;
-  }
-  .box4{
-      width: 100%;
-      margin-top: 20px;
-      background: white;
-      height: 600px;
-      padding: 20px 0;
-      border-radius: 10px;
-  }
-  .box4 div{
-      display: flex;
-      margin-top: 20px;
-      margin-bottom: 20px;
-  }
-  .box4 p{
-    width: 90%;
-    margin: auto;
-    margin-bottom: 20px;
-    font-size: 16px;
-  }
-  .box4 a {
-      text-decoration: none;
-      color: rgb(48, 177, 228);
-  }
-  .box4 .fa-folder-open{
-      color: rgb(48, 177, 228);
-      font-size: 20px;
-      margin: 0 10px;
-  }
-
-  textarea {
-    font-family: inherit;
-    font-size: 16px;
-    border-radius: 5px;
-    background: #F0F3F5;
-  }
-
-  textarea:focus {
-    outline: none;
-  }
 
   footer{
       padding: 50px 0;
@@ -725,71 +377,89 @@ img {
     font-weight: 700;
     margin-left: -10px;}
 
-  nav.navbar.responsive ul.navbar-list {
-    flex-direction: column;
-    width: 160px;
-    margin-left: -20px;
-    background: rgba(0, 0, 0, 0.75);
-    height: auto;
-    -webkit-animation: slide2 0.3s ease;
-    animation: slide2 0.3s ease;
-    position: absolute;
-    z-index: 1;
-    padding-left: 20px;
-    padding-bottom: 50px;
-    padding-top: 10px;}
+    nav.navbar.responsive ul.navbar-list {
+      flex-direction: column;
+      width: 160px;
+      margin-left: -20px;
+      background: rgba(0, 0, 0, 0.75);
+      height: auto;
+      transform: translateX(0);
+      -webkit-animation: slide2 0.8s ease;
+      animation: slide2 0.8s ease;
+      position: absolute;
+      z-index: 1;
+      padding-left: 20px;
+      padding-bottom: 50px;
+      padding-top: 10px;}
 
-  @-webkit-keyframes slide2 {
-    from {
-      width: 0; }
-    to {
-      width: 150px; } }
-  @keyframes slide2 {
-    from {
-      width: 0; }
-    to {
-      width: 150px; } }
-  nav.navbar.responsive {
-    display: block;
-    background: none;
-    padding: 0; }
-
-  nav.navbar.responsive ul.navbar-list li.dropDown,
-  nav.navbar.responsive ul.navbar-list li.dropDown2 {
-    position: relative;
-    top: 20px;
-    margin: 0; }
-    nav.navbar.responsive ul.navbar-list li.dropDown button.drop-btn,
-    nav.navbar.responsive ul.navbar-list li.dropDown2 button.drop-btn {
-      background: transparent;
-      font-weight: 700;
-      margin-bottom: 15px;
-      margin-top: 10px;
-      }
-
-    nav.navbar.responsive ul.navbar-list li.dropDown button.drop-btn.top {
-      margin-top: 0;
+    nav.navbar.responsive.ness ul.navbar-list {
+      transform: translateX(-200px);
+      -webkit-animation: slide3 0.8s ease;
+      animation: slide3 0.8s ease;
     }
-  nav.navbar.responsive ul.navbar-list li.nav-list-item {
-    /* position: relative; */
-    top: 30px;
-    line-height: 2;
-    font-weight: 400;
-    padding: 0;
-     }
-  nav.navbar.responsive ul.navbar-list li.nav-list-item.none {
-    display: none; }
-  nav.navbar.responsive ul.navbar-list li.top {
-    margin-top: 20px;
-    display: block; }
-    nav.navbar.responsive ul.navbar-list li.top a {
-      text-decoration: none;
-      font-size: 18px;
-      color: #fff;
-      font-weight: 700; }
 
-  nav.navbar.responsive ul.navbar-list li.top.student {
-     }
+    @-webkit-keyframes slide2 {
+      from {
+        transform: translateX(-200px); }
+      to {
+        transform: translateX(0);} }
+    @keyframes slide2 {
+      from {
+        transform: translateX(-200px); }
+      to {
+        transform: translateX(0);} }
+
+    @-webkit-keyframes slide3 {
+      from {
+        transform: translateX(0)); }
+      to {
+        transform: translateX(-200px);} }
+    @keyframes slide3 {
+      from {
+        transform: translateX(0); }
+      to {
+        transform: translateX(-200px);} }
+        nav.navbar.responsive {
+          display: block;
+          background: none;
+          padding: 0; }
+
+        nav.navbar.responsive ul.navbar-list li.dropDown,
+        nav.navbar.responsive ul.navbar-list li.dropDown2 {
+          position: relative;
+          top: 4px;
+          margin: 0; }
+          nav.navbar.responsive ul.navbar-list li.dropDown button.drop-btn,
+          nav.navbar.responsive ul.navbar-list li.dropDown2 button.drop-btn {
+            background: transparent;
+            font-weight: 400;
+            margin-bottom: 5px;
+            margin-top: 10px;
+            }
+
+          nav.navbar.responsive ul.navbar-list li.dropDown button.drop-btn.top {
+            margin-top: 0;
+          }
+        nav.navbar.responsive ul.navbar-list li.nav-list-item {
+          /* position: relative; */
+          top: 30px;
+          line-height: 1.5;
+          font-weight: 400;
+          padding: 0;
+           }
+        nav.navbar.responsive ul.navbar-list li.nav-list-item.none {
+          display: none; }
+        nav.navbar.responsive ul.navbar-list li.top {
+          margin-top: 5px;
+          display: block; }
+          nav.navbar.responsive ul.navbar-list li.top a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 400; }
+
+        nav.navbar.responsive ul.navbar-list li.top.student {
+           }
 
   .line {
     width: 130px;
@@ -818,128 +488,54 @@ img {
       margin-top: 0;
     }
 
-  .menu-container.responsive a.menu {
-    display: none; }
+    .menu-container.responsive a.menu {
+      display: none; }
 
-  .menu-container.responsive a.menu2,
-  .menu-container.responsive p.menu-text {
-    display: inline-block; }
-
-  .menu-container.responsive a.menu2 {
-    margin-left: 50px; }
-
-  h1.news {
-    font-size: 14px;
-    margin-left: 30px;
-    margin-bottom: 0; }
-
-  p.all {
-    font-size: 14px;
-    margin-bottom: 10px; }
-
-  .text {
-    font-size: 12px;
-    bottom: -20px;
-    background: #fff;
-    color: #1B1B1B;
-    padding: 5px 0;
-   }
-    .text p {
-      margin: 0;
-      margin-left: 20px;
-      margin-right: 0;
-    }
-      /* width: 200px; } */
-
-  .dot {
-    height: 5px;
-    width: 5px; }
-
-  .prev,
-  .next {
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none; }
-    .prev:hover,
-    .next:hover {
-      background: none; }
-
-    .box,
-    .wrap2 {
-      width: 100%;
-    }
-    .boxx h1{
-        font-size: 20px;
+    .menu-container.responsive.close a.menu {
+      display: block;
+      transform: translateX(0);
+      -webkit-animation: slide100 0.4s ease;
+      animation: slide100 0.4s ease;
     }
 
-    .boxx .one{
-        height: 3px;
-        background-color: rgba(218, 131, 131, 0.356);
-        width: 80%;
-        margin: auto;
-        margin-top: 5px;
-    }
-    .boxx p{
-        font-size: 14px;
+    @-webkit-keyframes slide100 {
+      from {
+        transform: translateX(100px); }
+      to {
+        transform: translateX(0);} }
+    @keyframes slide100 {
+      from {
+        transform: translateX(100px); }
+      to {
+        transform: translateX(0);} }
+
+    .menu-container.responsive.close a.menu2,
+    .menu-container.responsive.close p.menu-text {
+      display: none;
     }
 
-    .boxx img{
-        width: 50px;
-    }
+    .menu-container.responsive a.menu2,
+    .menu-container.responsive p.menu-text {
+      display: inline-block;
+      transform: translateX(0);
+      -webkit-animation: slide2 0.8s ease;
+      animation: slide2 0.8s ease;}
 
-    .three {
-      margin-left: 10px
-    }
+    .menu-container.responsive a.menu2 {
+      margin-left: 70px;
+      width: 16px;}
 
-    .boxx .three{
-        margin-top: 6%;
-    }
-    .three .one{
-        width: 90%;
-        margin-left: 6%;
-    }
-    .three h1{
-        font-family: "Noto Serif", serif;
-        font-size: 16px;
-        text-align: center;
-    }
-
-    .boxx2 h1{
-        text-align: center;
-        font-size: 20px;
-    }
-    .boxx2 .one{
-        margin: auto;
-        margin-top: 5px;
-    }
-    .boxx2 p{
-        font-size: 14px;
-        margin: auto;
-        margin-top: 20px;
-        width: 90%;
-        padding-bottom: 20px;
-    }
-
-    .boxx5 h1{
-        text-align: center;
-        font-size: 20px;
-    }
-
-
-    .box2{
-        margin-top: 30px;
+    .menu-container.responsive a.menu2 img {
+      width: 100%
     }
 
     .goop {
       display: none;
     }
     .others {
-      width: 50%;
+      width: 90%;
+      margin: auto;
+      font-weight: 400;
       margin-bottom: 20px;
     }
 
@@ -967,6 +563,11 @@ img {
 
   button.pro {
     cursor: pointer;
+    font-weight: 400;
+  }
+
+  ul li a {
+    font-weight: 400
   }
 
 /*# sourceMappingURL=app.css.map */

@@ -3,7 +3,7 @@
     padding: 0;
     color: #1B1B1B;
     font-family: 'Source Sans Pro', sans-serif;
-    
+
 }
 .navo{
     height: 90px;
@@ -15,24 +15,24 @@
 }
 
 #group,#group2{
-    
+
     display: flex;
     justify-content: center;
 }
 
 #group img{
     margin-left: 2px;
-   
+
 }
 #group2 img{
     margin-left: 2px;
-    
+
 }
 
 .smp{
 
     font-size: smaller;
-    
+
     font-weight: 900;
 }
   /** my own**/
@@ -91,7 +91,7 @@ input[type=submit]{
 
 p.boss{
     font-weight: bold;
-    
+
 }
 
 .group3{
@@ -110,7 +110,7 @@ p.boss{
       display: flex;
       margin-bottom: 15px;
       width: 100%;
-      
+
   }
   a.project,a.appr{
       text-decoration: none;
@@ -142,10 +142,10 @@ p.boss{
     width: 80%;
     transition: 0.2s ease-in-out;
     border: transparent;
-    
+
 }
 button.shepe:hover{
-    transform: scale(1.1); 
+    transform: scale(1.1);
     cursor: pointer;
     outline: none;
 
@@ -153,7 +153,7 @@ button.shepe:hover{
 .my-flex {
     display: flex;
     width: 250px;
-    
+
 }
 .txt{
     margin-top: 5px;
@@ -165,27 +165,27 @@ button.shepe:hover{
         padding: 30px 0;
         position: relative;
         padding-left: 20px;
-        
-         
+
+
 }
-   
+
 
 .my-flex.zind .drip {
-  
+
   position: absolute;
   top: 100px;
-  left: 20px; 
+  left: 20px;
 }
 
 .my-flex.zind .drip {
   top: 10px;
-  left: 210px; 
+  left: 210px;
 }
 
 .part2{
     width: 85%;
     background-color: #f0f3f5;
-    
+
 
 }
 .overall{
@@ -203,7 +203,7 @@ button.shepe:hover{
 
 .container2{
     display: flex;
-    
+
 }
 .white-container{
     -webkit-box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
@@ -211,7 +211,7 @@ button.shepe:hover{
     box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
     background-color: #fff;
     padding-top: 10px;
-    
+
 }
 .lock{
     width: 15px;
@@ -221,7 +221,7 @@ button.shepe:hover{
     width: 5%;
     text-align: center;
     color: #1B1B1B ;
-    
+
 }
 .fe{
     width: 35%;
@@ -237,7 +237,7 @@ button.shepe:hover{
 }
 .flp{
     display: flex;
-    
+
 }
 
 .blue-box{
@@ -266,23 +266,53 @@ button.shepe:hover{
     top: 10px;
     left: 120px; }
 
-  .respod {
-    display: flex;
-    width: 230px;
-    position: absolute;
-    z-index: 1;
-    padding: 30px 0;
-    padding-left: 20px;
-    flex-direction: column;
-    -webkit-box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
-    background: #fff;
-    padding: 30px 0;
-    position: relative;
-    padding-left: 20px;
-    
- }
+    .respod {
+      display: flex;
+      width: 230px;
+      position: absolute;
+      z-index: 1;
+      padding: 30px 0;
+      padding-left: 20px;
+      flex-direction: column;
+      -webkit-box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: -1px 1px 12px 0px rgba(0, 0, 0, 0.75);
+      background: #fff;
+      padding: 30px 0;
+      position: relative;
+      padding-left: 20px;
+      transform: translateX(0);
+      -webkit-animation: slide2 0.8s ease;
+      animation: slide2 0.8s ease;
+   }
+
+   .respod.oya {
+     transform: translateX(-400px);
+     -webkit-animation: slide3 0.8s ease;
+     animation: slide3 0.8s ease;
+   }
+
+   @-webkit-keyframes slide3 {
+     from {
+       transform: translateX(0)); }
+     to {
+       transform: translateX(-400px);} }
+   @keyframes slide3 {
+     from {
+       transform: translateX(0); }
+     to {
+       transform: translateX(-400px);} }
+
+   @-webkit-keyframes slide2 {
+     from {
+       transform: translateX(-200px); }
+     to {
+       transform: translateX(0);} }
+   @keyframes slide2 {
+     from {
+       transform: translateX(-200px); }
+     to {
+       transform: translateX(0);} }
  .respod{
 
     width: 230px;
@@ -293,7 +323,7 @@ button.shepe:hover{
     font-weight: 900;
 }
 .ge, .ae, .pe,.se,.re{
-    
+
     margin-bottom: 20px;
 
 }
@@ -302,7 +332,7 @@ button.shepe:hover{
 .white-container{
     margin-bottom: 15px;
 }
- 
+
 
 
 
@@ -316,7 +346,7 @@ button.shepe:hover{
     .dropdownLink{
         display: block;
     }
-    
+
     .dropdownLink {
         display: none;
         position: absolute;
@@ -325,16 +355,16 @@ button.shepe:hover{
     .part2 .dropdownLink2 {
         display: block;
         top: 25px;
-        left: 40px 
+        left: 40px
     }
     .fe{
         width: 25%;
         margin-bottom: 10px;
-    
+
     }
     .ge {
         width: 18%;
-        
+
     }
     .ge, .ae, .pe,.se{
         margin-left: 3px;
@@ -342,7 +372,7 @@ button.shepe:hover{
     .extra{
         font-size: smaller;
     }
-    
+
     .group3 h2{
         font-size: large;
     }
@@ -351,7 +381,7 @@ button.shepe:hover{
         top: 0px;
         right: -25px;
     }
-    
+
 }
 
 @media(max-width:370px){
