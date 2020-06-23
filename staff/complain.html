@@ -91,26 +91,29 @@
           <div class="nothing"></div>
 
           <div class="from-container">
-            <form class="this-form">
+            <form class="this-form" action="../server/contact.php" method="POST">
               <div class="logo-form-container">
                 <img class="logo-form" src="../img/sys.png" alt="Logo">
                 <img class="logo-form" src="../img/lag.png" alt="Logo">
               </div>
               <h1 class="comp">Complaint Form</h1>
-              <input id="email" class="email-input" type="email" placeholder="Enter your email..." required>
+              <?php if (isset($msg)) : ; ?>
+                <p class="<?php echo $msgClass; ?>"><?php echo $msg; ?></p>
+              <?php endif; ?>
+              <input id="email" class="email-input" type="email" placeholder="Enter your email..." required name="email">
               <p class="or">OR</p>
               <div class="check-container">
                 <input id="checkbox" type="checkbox"> <p class="anonymous">Send as anonymous</p>
               </div>
               <a class="dasho" href="dashboard.html">To dashboard</a>
-              <textarea rows="8" cols="80" placeholder="Enter complaint..." required></textarea>
+              <textarea rows="8" cols="80" placeholder="Enter complaint..." required name="complaint"></textarea>
               <div class="submit-container">
                 <p class="paragraph">Send to: </p>
-                <select class="form-select" class="sender">
-                  <option value="">HOD</option>
-                  <option value="">Course Adviser</option>
-                  <option value="">Supervisor</option>
-                  <input class="btn" type="submit" value="SUBMIT">
+                <select class="form-select" class="sender" name="reciever">
+                  <option value="1">HOD</option>
+                  <option value="2">Course Adviser</option>
+                  <option value="3">Supervisor</option>
+                  <input class="btn" type="submit" value="SUBMIT" name="submit">
                   
                 </select>
               </div>
