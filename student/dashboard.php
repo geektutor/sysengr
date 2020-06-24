@@ -238,7 +238,19 @@
               <hr>
               <?php foreach($attempts as $item) : ; ?>
                 <div class="seco">
-                  <h1 class="nan">Cleared</h1>
+                  <h1 class="nan">
+                    <?php
+                      if ($item['status'] == 0) {
+                        echo "Not reviewed";
+                      } elseif ($item['status'] == 1) {
+                        echo "Reviewed by Supervisor";
+                      } elseif ($item['status'] == 2) {
+                        echo "Reviewed by Course Adviser";
+                      } elseif ($item['status'] == 3) {
+                        echo "Cleared";
+                      }
+                    ?>
+                  </h1>
                   <h1 class="nan"><?php echo $item['date_added']; ?></h1>
 
                 </div>

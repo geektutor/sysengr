@@ -27,10 +27,19 @@
 
     };
 
-    $sql1 = "SELECT * FROM clearance WHERE adviser_no = {$user_number} OR superviser_no = {$user_number}";
+    $sql1 = "SELECT * FROM clearance WHERE adviser_no = {$user_number} AND status = 1";
     $result1 = mysqli_query($conn, $sql1);
-    $students = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+    $students1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
     mysqli_free_result($result1);
+
+    if ($students1) {
+      $students = $students1;
+    } else {
+      $sql1 = "SELECT * FROM clearance WHERE superviser_no = {$user_number} AND status = 0";
+      $result1 = mysqli_query($conn, $sql1);
+      $students1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+      mysqli_free_result($result1);
+    }
 
     $sql2 = "SELECT * FROM user WHERE user_number = {$user_number}";
     $result2 = mysqli_query($conn, $sql2);
@@ -227,7 +236,13 @@
                           <div class="ge"><p class="smp"><?php echo $student['date_added']; ?></p></div>
                           <div class="ae" > <div class="blue-box"></div> </div>
 
-                          <div class="pe"><a class="smp" href="#">Approve</a></div>
+                          <div class="pe">
+                            <form action="../server/approve.php" method="POST" style="margin: 0px; padding: 0px;">
+                              <input type="hidden" name="id" value="<?php echo $student['id']; ?>">
+                              <input type="hidden" name="matric" value="<?php echo $student['matric']; ?>">
+                              <button type="submit" style="background-color: transparent; border: 0px;" name="approve"><span style="text-decoration: underline;">Approve</span></button>
+                            </form>
+                          </div>
                       </div>
                     <?php endforeach; ?>
                 </div>
