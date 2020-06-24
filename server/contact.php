@@ -16,6 +16,7 @@
 			$email = $_POST['email'];
 			$complaint = $_POST['complaint'];
 			$reciever = $_POST['reciever'];
+			$who = $_POST['who'];
 
 			if ($reciever == 1) {
 				$reciever = 'HOD'; // I need the HODs mail
@@ -32,7 +33,7 @@
 
 			mail('zubairidrisaweda@gmail.com', 'Conplaint', $complaint, 'From: '.$email);
 
-			header('Location: ../staff/complain.html');
+			header('Location: ../'.$who.'/complain.html');
 
 		};
 
