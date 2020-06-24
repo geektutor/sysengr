@@ -1,6 +1,9 @@
 <?php
 
   $conn = mysqli_connect('localhost', 'root', '', 'sysengr') or die('Cannot connect db');
+  session_start();
+
+  $user_number = $_SESSION['user_number'];
 
   if (isset($_POST['clear'])) {
     if (!empty($_POST['superviser']) && !empty($_POST['adviser']) && !empty($_POST['title']) && !empty($_POST['matric'])) {
@@ -14,15 +17,24 @@
       $matric = $_POST['matric'];
 
       $query = "INSERT INTO clearance (superviser_no, adviser_no, title, matric) VALUES ('$superviser', '$adviser', '$title', '$matric')";
-
       $result = mysqli_query($conn, $query) or die('Cannot write to db');
 
       $msg = 'Clearance Submitted Successfully';
       $msgClass = 'alert alert-success';
 
-      mysqli_close($conn);
     };
-  };   
+  };
+
+  $sql1 = "SELECT * FROM clearance WHERE matric = {$user_number}";
+  $result1 = mysqli_query($conn, $sql1);
+  $attempts = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+  mysqli_free_result($result1);
+
+  $sql2 = "SELECT * FROM user WHERE user_number = {$user_number}";
+  $result2 = mysqli_query($conn, $sql2);
+  $current_user = mysqli_fetch_assoc($result2);
+
+  mysqli_close($conn);
 
 ?>
 <!DOCTYPE html>
@@ -121,7 +133,7 @@
               </div>
 
               <div class="nickname">
-                <p class="boss">Omolara Phillips</p>
+                <p class="boss"><?php echo $current_user['name']; ?></p>
               </div>
             </div>
             <div class="padder">
@@ -205,8 +217,8 @@
                       <input type="text" class="form-control" required="" name="title">
                     </div>
                     <div class="col-lg-6 mb-3">
-                      <label for="selc" style="font-size: medium; font-weight: bold;" >Matric Number </label>
-                      <input type="number" class="form-control" required="" name="matric">
+                      <label for="selc" style="font-size: medium; font-weight: bold;">Matric Number </label>
+                      <input type="number" class="form-control" required="" name="matric" value="<?php echo $current_user['user_number']; ?>">
                     </div>
 
                     <input type="submit" value="Request Clearance" name="clear">
@@ -224,26 +236,13 @@
               </div>
 
               <hr>
-              <div class="seco">
-                <h1 class="nan">Cleared</h1>
-                <h1 class="nan">9-04-2020</h1>
+              <?php foreach($attempts as $item) : ; ?>
+                <div class="seco">
+                  <h1 class="nan">Cleared</h1>
+                  <h1 class="nan"><?php echo $item['date_added']; ?></h1>
 
-              </div>
-              <div class="seco">
-                <h1 class="nan">Cleared</h1>
-                <h1 class="nan">9-04-2020</h1>
-
-              </div>
-              <div class="seco">
-                <h1 class="nan">Cleared</h1>
-                <h1 class="nan">9-04-2020</h1>
-
-              </div>
-              <div class="seco">
-                <h1 class="nan">Cleared</h1>
-                <h1 class="nan">9-04-2020</h1>
-
-              </div>
+                </div>
+              <?php endforeach; ?>
 
 
 
