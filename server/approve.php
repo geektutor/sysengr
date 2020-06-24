@@ -1,33 +1,37 @@
 <?php
-	//Setting the type of response users recieves
-	$msg = '';
-	$msgClass = '';
 
-	//Connecting to the db
-	$conn = mysqli_connect('localhost', 'root', '', 'sysengr') or die('Uanble to connect to db');
-	
-	//Check that we actually have a submit button
-	if (isset($_POST['approve'])) {
+  $conn = mysqli_connect('localhost', 'root', '', 'sysengr') or die('Cannot connect to database');
 
-		//Set the user input to variables
-		$matric = $_POST['matric'];
-		$id = $_POST['id'];
+  if (isset($_POST['approve'])) {
+  	$id = $_POST['id'];
+  	$matric = $_POST['matric'];
 
-		$query = "SELECT * FROM clearance WHERE ID = {$id} AND matric = {$matric}";
-		$answer = mysqli_query($conn, $query);
-  		$status = mysqli_fetch_all($answer, MYSQLI_ASSOC);
+  	$query = "SELECT * FROM clearance WHERE ID = {$id}";
+
+  	if (mysqli_query($conn, $query)) {
+
+  		$answer = mysqli_query($conn, $query);
+
+  		$status = mysqli_fetch_assoc($answer);
+
   		mysqli_free_result($answer);
 
-  		$new_status = $answer['status'] + 1;
+  		$new_status = $status['status'] + 1;
 
-		$query2 = "UPDATE clearance SET status = {$new_status} WHERE ID = {$id} AND matric = {$matric}";
+  		// echo $payments['Payments'];
 
-		$result = mysqli_query($conn, $query2) or die('Cannot write to db');
+  		$query2 = "UPDATE clearance SET status = {$new_status} WHERE ID = {$id} AND matric = {$matric}";
 
-		header('Location: ../staff/dashboard.php');
+  		$answer2 = mysqli_query($conn, $query2);
 
-	};
+  		header('Location: ../staff/dashboard.php');
+  	} else {
+  		echo $id.','.$matric;
+  		echo "I am dead";
+  	};
 
-	mysqli_close($conn);	
+  };
+
+  mysqli_close($conn);
 
 ?>

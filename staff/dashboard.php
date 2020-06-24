@@ -9,24 +9,6 @@
     die(mysqli_connect_errno());
     }
 
-    if (isset($_POST['approve'])) {
-
-      $groupname = $_POST['groupname'];
-      $location = $_POST['location'];
-      $desc = $_POST['description'];
-
-      $query = "INSERT INTO groups (Group_Name, Location) VALUES ('$groupname', '$location')";
-
-      if (mysqli_query($conn, $query)) {
-        
-        header('Location: groups.php');
-
-      } else {
-        echo "Unable to add data";
-      };
-
-    };
-
     $sql1 = "SELECT * FROM clearance WHERE adviser_no = {$user_number} AND status = 1";
     $result1 = mysqli_query($conn, $sql1);
     $students1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
@@ -225,26 +207,28 @@
 
                         <div class="pe"><a class="smp" href="#">Approve</a></div>
                     </div>
-                    <?php foreach($students as $student) : ; ?>
-                      <div class="flp">
-                          <div class="re"><p class="smp"><?php echo $student['ID']; ?></p></div>
-                          <div class="fe">
-                              <p class="nm lo smp"><?php echo $student['title']; ?></p>
-                              <p class="nm lo smp"><?php echo $student['matric']; ?></p>
-                          </div>
+                    <?php if(isset($students)) : ; ?>
+                      <?php foreach($students as $student) : ; ?>
+                        <div class="flp">
+                            <div class="re"><p class="smp"><?php echo $student['ID']; ?></p></div>
+                            <div class="fe">
+                                <p class="nm lo smp"><?php echo $student['title']; ?></p>
+                                <p class="nm lo smp"><?php echo $student['matric']; ?></p>
+                            </div>
 
-                          <div class="ge"><p class="smp"><?php echo $student['date_added']; ?></p></div>
-                          <div class="ae" > <div class="blue-box"></div> </div>
+                            <div class="ge"><p class="smp"><?php echo $student['date_added']; ?></p></div>
+                            <div class="ae" > <div class="blue-box"></div> </div>
 
-                          <div class="pe">
-                            <form action="../server/approve.php" method="POST" style="margin: 0px; padding: 0px;">
-                              <input type="hidden" name="id" value="<?php echo $student['id']; ?>">
-                              <input type="hidden" name="matric" value="<?php echo $student['matric']; ?>">
-                              <button type="submit" style="background-color: transparent; border: 0px;" name="approve"><span style="text-decoration: underline;">Approve</span></button>
-                            </form>
-                          </div>
-                      </div>
-                    <?php endforeach; ?>
+                            <div class="pe">
+                              <form action="../server/approve.php" method="POST" style="margin: 0px; padding: 0px;">
+                                <input type="hidden" name="id" value="<?php echo $student['ID']; ?>">
+                                <input type="hidden" name="matric" value="<?php echo $student['matric']; ?>">
+                                <button type="submit" style="background-color: transparent; border: 0px;" name="approve"><span style="text-decoration: underline;">Approve</span></button>
+                              </form>
+                            </div>
+                        </div>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
 
             </div>
