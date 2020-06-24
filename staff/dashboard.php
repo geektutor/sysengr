@@ -1,6 +1,9 @@
 <?php
 
   $conn = mysqli_connect('localhost', 'root', '', 'sysengr');
+  session_start();
+
+  $user_number = $_SESSION['user_number'];
 
   if (mysqli_connect_errno()) {
     die(mysqli_connect_errno());
@@ -24,13 +27,14 @@
 
     };
 
-    $sql = "SELECT * FROM clearance";
+    $sql1 = "SELECT * FROM clearance WHERE adviser_no = {$user_number} OR superviser_no = {$user_number}";
+    $result1 = mysqli_query($conn, $sql1);
+    $students = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+    mysqli_free_result($result1);
 
-    $result = mysqli_query($conn, $sql);
-
-    $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    mysqli_free_result($result);
+    $sql2 = "SELECT * FROM user WHERE user_number = {$user_number}";
+    $result2 = mysqli_query($conn, $sql2);
+    $current_user = mysqli_fetch_assoc($result2);
 
     mysqli_close($conn);
 
@@ -130,7 +134,7 @@
               </div>
 
               <div class="nickname">
-                <p class="boss">Prof Omolara Phillips</p>
+                <p class="boss"><?php echo $current_user['name']; ?></p>
               </div>
             </div>
             <div class="padder">
