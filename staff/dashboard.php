@@ -1,28 +1,38 @@
 <?php
 
-  $conn = mysqli_connect('localhost', 'root', '', 'sysengr') or die('Cannot connect db');
+  $conn = mysqli_connect('localhost', 'root', '', 'sysengr');
 
-  if (isset($_POST['clear'])) {
-    if (!empty($_POST['superviser']) && !empty($_POST['adviser']) && !empty($_POST['title']) && !empty($_POST['matric'])) {
+  if (mysqli_connect_errno()) {
+    die(mysqli_connect_errno());
+    }
 
-      $msg = '';
-      $msgClass = '';
+    if (isset($_POST['approve'])) {
 
-      $superviser = $_POST['superviser'];
-      $adviser = $_POST['adviser'];
-      $title = $_POST['title'];
-      $matric = $_POST['matric'];
+      $groupname = $_POST['groupname'];
+      $location = $_POST['location'];
+      $desc = $_POST['description'];
 
-      $query = "INSERT INTO clearance (superviser_no, adviser_no, title, matric) VALUES ('$superviser', '$adviser', '$title', '$matric')";
+      $query = "INSERT INTO groups (Group_Name, Location) VALUES ('$groupname', '$location')";
 
-      $result = mysqli_query($conn, $query) or die('Cannot write to db');
+      if (mysqli_query($conn, $query)) {
+        
+        header('Location: groups.php');
 
-      $msg = 'Clearance Submitted Successfully';
-      $msgClass = 'alert alert-success';
+      } else {
+        echo "Unable to add data";
+      };
 
-      mysqli_close($conn);
     };
-  };   
+
+    $sql = "SELECT * FROM clearance";
+
+    $result = mysqli_query($conn, $sql);
+
+    $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    mysqli_free_result($result);
+
+    mysqli_close($conn);
 
 ?>
 <!DOCTYPE html>
@@ -30,12 +40,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student dashboard</title>
-    <link rel="stylesheet" href="../css/dashstudentstyle.css">
-    <link rel="stylesheet" href="../css/app2.css">
-    <link rel="shortcut icon" href="../img/favicon.jpeg" type="image/x-icon">
+    <link rel="icon" href="img/logo.png" sizes="16*16">
+    <title>pending</title>
+    <link rel="stylesheet" href="../css/staffdashstyle.css">
+    <link rel="stylesheet" href="../css/appstaff.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 
 </head>
@@ -63,7 +72,7 @@
             <div class="menu-container" id="dropdown">
               <p class="menu-text">MENU</p>
               <a class="menu" href="javascript:;" onclick="toggleDropdown()"><img src="../img/icon-hamburger.svg" alt="Icon"></a>
-              <a class="menu2" href="javascript:;" onclick="toggleDropdown()"><img src="../img/icon-close2.svg" alt="Icon"></a>
+              <a class="menu2" href="javascript:;" onclick="toggleDropdown()"><img src="../img/icon-close2s.svg" alt="Icon"></a>
             </div>
 
             <div class="search" id="input">
@@ -121,7 +130,7 @@
               </div>
 
               <div class="nickname">
-                <p class="boss">Omolara Phillips</p>
+                <p class="boss">Prof Omolara Phillips</p>
               </div>
             </div>
             <div class="padder">
@@ -170,85 +179,54 @@
 
 
         <div class="part2">
-            <div class="dropdownLink" id="dropdownLink"><a onclick="toggleDropdow2()" href="javascript:;"><img src="../img/icon-close.svg" alt="Img"> </a></div>
+            <div class="dropdownLink" id="dropdownLink"><a onclick="toggleDropdow2()" href="javascript:;"><img src="../img/icon-close2.svg" alt="Img"> </a></div>
             <div class="dropdownLink2" id="dropdownLink2"><a onclick="toggleDropdow()" href="javascript:;"><img src="../img/chevron right.png" alt="Img"> </a></div>
 
-            <h3>Request Clearance</h3>
-            <?php if (isset($msg)) : ; ?>
-              <p class="<?php echo $msgClass; ?>"><?php echo $msg; ?></p>
-            <?php endif; ?>
-            <div class="white col-7">
-                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row col-12">
 
-                    <div class="col-lg-6 mb-3">
-                      <label for="selc" style="font-size: medium; font-weight: bold;">Project Supervisor</label>
-                      <select name="superviser" id="">
-                          <option value="orolu">Orolu</option>
-                          <option value="orolu">Orolu</option>
-                          <option value="orolu">Orolu</option>
-                          <option value="orolu">Orolu</option>
-                      </select>
+            <div class="overall">
+
+                <div class="continop">
+                    <div class="group3" ><h2> <a class="appr" href="approve.html">Approved request</a> <img src="../img/arrow forward icon.svg" alt=""></h2></div>
+                    <div class="group3"><h2> Pending request </h2></div>
+
+                </div>
+                <div class="container2">
+                    <div class="re"></div>
+                    <div class="fe extra"><p class="nm smp" >Name</p></div>
+                    <div class="ge extra"><p class="smp">Date</p> </div>
+                    <div class="ae extra" id="group"><p class="smp">Course adviser</p><img class="lock" src="../img/lock.png" alt=""> </div>
+                    <div class="pe extra"><p class="smp">Project supervisor</p> </div>
+                </div>
+
+                <div class="white-container">
+
+                    <div class="flp">
+                        <div class="re"><p class="smp">id</p></div>
+                        <div class="fe">
+                            <p class="nm lo smp">title</p>
+                            <p class="nm lo smp">matric</p>
+                        </div>
+
+                        <div class="ge"><p class="smp">date_added</p></div>
+                        <div class="ae" > <div class="blue-box"></div> </div>
+
+                        <div class="pe"><a class="smp" href="#">Approve</a></div>
                     </div>
+                    <?php foreach($students as $student) : ; ?>
+                      <div class="flp">
+                          <div class="re"><p class="smp"><?php echo $student['ID']; ?></p></div>
+                          <div class="fe">
+                              <p class="nm lo smp"><?php echo $student['title']; ?></p>
+                              <p class="nm lo smp"><?php echo $student['matric']; ?></p>
+                          </div>
 
-                    <div class="col-lg-6 mb-3">
-                      <label for="selc" style="font-size: medium; font-weight: bold;" >Course Adviser </label>
-                      <select name="adviser" id="">
-                          <option value="orolu">Orolu</option>
-                          <option value="orolu">Orolu</option>
-                          <option value="orolu">Orolu</option>
-                          <option value="orolu">Orolu</option>
-                      </select>
-                    </div>
+                          <div class="ge"><p class="smp"><?php echo $student['date_added']; ?></p></div>
+                          <div class="ae" > <div class="blue-box"></div> </div>
 
-                    <div class="col-lg-6 mb-3">
-                      <label for="selc" style="font-size: medium; font-weight: bold;" >Project Title </label>
-                      <input type="text" class="form-control" required="" name="title">
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                      <label for="selc" style="font-size: medium; font-weight: bold;" >Matric Number </label>
-                      <input type="number" class="form-control" required="" name="matric">
-                    </div>
-
-                    <input type="submit" value="Request Clearance" name="clear">
-
-                </form>
-
-            </div>
-
-            <h3 class="dop">Clearance Status</h3>
-            <div class="white sec">
-              <div class="seco">
-                <h1 class="nan h l">Status</h1>
-                <h1 class="nan h r">Date</h1>
-
-              </div>
-
-              <hr>
-              <div class="seco">
-                <h1 class="nan">Cleared</h1>
-                <h1 class="nan">9-04-2020</h1>
-
-              </div>
-              <div class="seco">
-                <h1 class="nan">Cleared</h1>
-                <h1 class="nan">9-04-2020</h1>
-
-              </div>
-              <div class="seco">
-                <h1 class="nan">Cleared</h1>
-                <h1 class="nan">9-04-2020</h1>
-
-              </div>
-              <div class="seco">
-                <h1 class="nan">Cleared</h1>
-                <h1 class="nan">9-04-2020</h1>
-
-              </div>
-
-
-
-              <input type="submit" class="subba" value="Print Clearance">
-
+                          <div class="pe"><a class="smp" href="#">Approve</a></div>
+                      </div>
+                    <?php endforeach; ?>
+                </div>
 
             </div>
 
@@ -329,42 +307,42 @@
 
     <script type="text/javascript">
 
-        function toggleDropdow() {
-                let navbarToggle = document.getElementById("navt");
-                if (navbarToggle.className === 'my-flex') {
-                    navbarToggle.className = 'respod';
-                    document.getElementById("dropdownLink").style.display="block";
+    function toggleDropdow() {
+            let navbarToggle = document.getElementById("navt");
+            if (navbarToggle.className === 'my-flex') {
+                navbarToggle.className = 'respod';
+                document.getElementById("dropdownLink").style.display="block";
 
-                } else if (navbarToggle.className === 'respod') {
-                  navbarToggle.className += ' oya';
+            } else if (navbarToggle.className === 'respod') {
+              navbarToggle.className += ' oya';
 
-                } else if (navbarToggle.className === 'respod oya') {
-                  navbarToggle.className = 'respod';
-                  document.getElementById("dropdownLink").style.display="block";
-                }
+            } else if (navbarToggle.className === 'respod oya') {
+              navbarToggle.className = 'respod';
+              document.getElementById("dropdownLink").style.display="block";
+            }
+
+        }
+    function toggleDropdow2() {
+            let navbarToggle = document.getElementById("navt");
+            if (navbarToggle.className === 'my-flex') {
+                navbarToggle.className = 'respod';
+                document.getElementById("dropdownLink").style.display="block";
+
+            } else if (navbarToggle.className === 'respod') {
+              navbarToggle.className += ' oya';
+              document.getElementById("dropdownLink").style.display="none";
+            } else if (navbarToggle.className === 'respod oya') {
+              navbarToggle.className = 'respod';
+              document.getElementById("dropdownLink").style.display="none";
 
             }
-        function toggleDropdow2() {
-                let navbarToggle = document.getElementById("navt");
-                if (navbarToggle.className === 'my-flex') {
-                    navbarToggle.className = 'respod';
-                    document.getElementById("dropdownLink").style.display="block";
 
-                } else if (navbarToggle.className === 'respod') {
-                  navbarToggle.className += ' oya';
-                  document.getElementById("dropdownLink").style.display="none";
-                } else if (navbarToggle.className === 'respod oya') {
-                  navbarToggle.className = 'respod';
-                  document.getElementById("dropdownLink").style.display="none";
-
-                }
-
-                else {
-                    navbarToggle.className = 'my-flex';
-                    document.getElementById("dropdownLink").style.display="none";
-                }
-
+            else {
+                navbarToggle.className = 'my-flex';
+                document.getElementById("dropdownLink").style.display="none";
             }
+
+        }
 
 
     </script>
