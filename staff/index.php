@@ -24,7 +24,7 @@
 
             if ($user == '') {
 
-                $msg = 'Staff Not Found';
+                $msg = 'User Not Found';
                 $msgClass = 'alert alert-danger';
             
             } else {
@@ -37,7 +37,11 @@
 
                     // print_r($user);
 
-                    header('Location: dashboard.php');
+                    if ($user['type'] == 0) {
+                        header('Location: ../student/dashboard.php');
+                    } elseif ($user['type'] == 1 or $user['type'] == 2) {
+                        header('Location: dashboard.php');
+                    };
 
                 } else {
 

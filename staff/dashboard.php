@@ -21,6 +21,15 @@
       $result1 = mysqli_query($conn, $sql1);
       $students1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
       mysqli_free_result($result1);
+      if ($students1) {
+        $students = $students1;
+      } else {
+        $sql1 = "SELECT * FROM clearance WHERE status = 2";
+        $result1 = mysqli_query($conn, $sql1);
+        $students1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+        mysqli_free_result($result1);
+        $students = $students1;
+      }
     }
 
     $sql2 = "SELECT * FROM user WHERE user_number = {$user_number}";
