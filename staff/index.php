@@ -12,7 +12,7 @@
 
             $conn = mysqli_connect('localhost', 'root', '', 'sysengr') or die('Unable to connect');
 
-            $sql = "SELECT user_number, password FROM user WHERE user_number = '$number'";
+            $sql = "SELECT user_number, password, type FROM user WHERE user_number = '$number'";
 
             $result = mysqli_query($conn, $sql) or die('Unable to fetch data from database');
 
