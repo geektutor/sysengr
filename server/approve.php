@@ -1,12 +1,12 @@
 <?php
-
-  $conn = mysqli_connect('localhost', 'root', '', 'sysengr') or die('Cannot connect to database');
+  
+  include ('../config/conn.php');
 
   if (isset($_POST['approve'])) {
   	$id = $_POST['id'];
   	$matric = $_POST['matric'];
 
-  	$query = "SELECT * FROM clearance WHERE ID = {$id}";
+  	$query = "SELECT * FROM clearance WHERE id = {$id}";
 
   	if (mysqli_query($conn, $query)) {
 
@@ -20,7 +20,7 @@
 
   		// echo $payments['Payments'];
 
-  		$query2 = "UPDATE clearance SET status = {$new_status} WHERE ID = {$id} AND matric = {$matric}";
+  		$query2 = "UPDATE clearance SET status = {$new_status} WHERE id = {$id} AND matric = {$matric}";
 
   		$answer2 = mysqli_query($conn, $query2);
 

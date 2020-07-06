@@ -1,42 +1,35 @@
 <?php
-
-  $conn = mysqli_connect('localhost', 'root', '', 'sysengr');
-  session_start();
+  include ('../config/conn.php');
+  include ('../config/session.php');
 
   $user_number = $_SESSION['user_number'];
+  if(isset( $_SESSION['login_user'])){
+    $user_number = $_SESSION['user_number'];
 
-  if (mysqli_connect_errno()) {
-    die(mysqli_connect_errno());
-    }
+    //for course adviser
+    $sql = "SELECT * FROM clearance WHERE adviser_no = {$user_number} AND status = 1";
+    $result = mysqli_query($conn, $sql);
+    $std_advisor = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result);
 
-    $sql1 = "SELECT * FROM clearance WHERE adviser_no = {$user_number} AND status = 1";
-    $result1 = mysqli_query($conn, $sql1);
-    $students1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-    mysqli_free_result($result1);
-
-    if ($students1) {
-      $students = $students1;
-    } else {
-      $sql1 = "SELECT * FROM clearance WHERE superviser_no = {$user_number} AND status = 0";
-      $result1 = mysqli_query($conn, $sql1);
-      $students1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-      mysqli_free_result($result1);
-      if ($students1) {
-        $students = $students1;
-      } else {
-        $sql1 = "SELECT * FROM clearance WHERE status = 2";
-        $result1 = mysqli_query($conn, $sql1);
-        $students1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-        mysqli_free_result($result1);
-        $students = $students1;
-      }
-    }
-
+    //for supervisor
+    $sql = "SELECT * FROM clearance WHERE superviser_no = {$user_number} AND status = 0";
+    $result = mysqli_query($conn, $sql);
+    $std_supervisor = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result);
+    
+    //for HOD 
+    // $sql = "SELECT * FROM clearance WHERE status = 2";
+    // $result = mysqli_query($conn, $sql);
+    // $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    // mysqli_free_result($result);
+    // $students = $students1;
+    
     $sql2 = "SELECT * FROM user WHERE user_number = {$user_number}";
     $result2 = mysqli_query($conn, $sql2);
     $current_user = mysqli_fetch_assoc($result2);
 
-    mysqli_close($conn);
+    // mysqli_close($conn);
 
 ?>
 <!DOCTYPE html>
@@ -45,7 +38,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/logo.png" sizes="16*16">
-    <title>pending</title>
+    <title>Staff - Dashboard</title>
     <link rel="stylesheet" href="../css/staffdashstyle.css">
     <link rel="stylesheet" href="../css/appstaff.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Source+Sans+Pro&display=swap" rel="stylesheet">
@@ -134,7 +127,7 @@
               </div>
 
               <div class="nickname">
-                <p class="boss"><?php echo $current_user['name']; ?></p>
+                <p class="boss"><?= $current_user['name']; ?></p>
               </div>
             </div>
             <div class="padder">
@@ -191,12 +184,12 @@
 
                 <div class="continop">
                     <div class="group3" ><h2> <a class="appr" href="approve.html">Approved request</a> <img src="../img/arrow forward icon.svg" alt=""></h2></div>
-                    <div class="group3"><h2> Pending request </h2></div>
+                    <div class="group3"><h2> Pending request(As a Supervisor) </h2></div>
 
                 </div>
                 <div class="container2">
                     <div class="re"></div>
-                    <div class="fe extra"><p class="nm smp" >Name</p></div>
+                    <div class="fe extra"><p class="nm smp" >Project Title / Name</p></div>
                     <div class="ge extra"><p class="smp">Date</p> </div>
                     <div class="ae extra" id="group"><p class="smp">Course adviser</p><img class="lock" src="../img/lock.png" alt=""> </div>
                     <div class="pe extra"><p class="smp">Project supervisor</p> </div>
@@ -204,34 +197,31 @@
 
                 <div class="white-container">
 
-                    <div class="flp">
-                        <div class="re"><p class="smp">id</p></div>
-                        <div class="fe">
-                            <p class="nm lo smp">title</p>
-                            <p class="nm lo smp">matric</p>
-                        </div>
-
-                        <div class="ge"><p class="smp">date_added</p></div>
-                        <div class="ae" > <div class="blue-box"></div> </div>
-
-                        <div class="pe"><a class="smp" href="#">Approve</a></div>
-                    </div>
-                    <?php if(isset($students)) : ; ?>
-                      <?php foreach($students as $student) : ; ?>
+                    <?php if(isset($std_advisor)) :  $j= 1; ?>
+                      <?php foreach($std_advisor as $student) : ; ?>
                         <div class="flp">
-                            <div class="re"><p class="smp"><?php echo $student['ID']; ?></p></div>
+                            <div class="re"><p class="smp"><?= $j++; ?></p></div>
                             <div class="fe">
-                                <p class="nm lo smp"><?php echo $student['title']; ?></p>
-                                <p class="nm lo smp"><?php echo $student['matric']; ?></p>
+                                <p class="nm lo smp"><?= $student['title']; ?></p>
+                                <p class="nm lo smp"><?= $student['matric']; ?></p>
                             </div>
 
-                            <div class="ge"><p class="smp"><?php echo $student['date_added']; ?></p></div>
-                            <div class="ae" > <div class="blue-box"></div> </div>
+                            <div class="ge"><p class="smp"><?= $student['date_added']; ?></p></div>
+                            <div class="ae">
+                              <?php
+                                $supervisor = $student['superviser_no'];
+                                $sqls = "SELECT * FROM user WHERE user_number = '$supervisor'";
+                                $results = mysqli_query($conn, $sqls);
+                                $sup = mysqli_fetch_assoc($results);
+                                echo $sup['name'];
+                              ?> 
+                              
+                            </div>
 
                             <div class="pe">
                               <form action="../server/approve.php" method="POST" style="margin: 0px; padding: 0px;">
-                                <input type="hidden" name="id" value="<?php echo $student['ID']; ?>">
-                                <input type="hidden" name="matric" value="<?php echo $student['matric']; ?>">
+                                <input type="hidden" name="id" value="<?= $student['id']; ?>">
+                                <input type="hidden" name="matric" value="<?= $student['matric']; ?>">
                                 <button type="submit" style="background-color: transparent; border: 0px;" name="approve"><span style="text-decoration: underline;">Approve</span></button>
                               </form>
                             </div>
@@ -242,6 +232,55 @@
 
             </div>
 
+              <div class="overall">
+
+                <div class="continop">
+                    <div class="group3"><h2> Pending request (As a course adviser)</h2></div>
+                </div>
+                <div class="container2">
+                    <div class="re"></div>
+                    <div class="fe extra"><p class="nm smp" >Project Title / Name</p></div>
+                    <div class="ge extra"><p class="smp">Date</p> </div>
+                    <div class="ae extra" id="group"><p class="smp">Course adviser</p><img class="lock" src="../img/lock.png" alt=""> </div>
+                    <div class="pe extra"><p class="smp">Project supervisor</p> </div>
+                </div>
+
+                <div class="white-container">
+
+                    <?php if(isset($std_supervisor)) :  $j= 1; ?>
+                      <?php foreach($std_supervisor as $student) : ; ?>
+                        <div class="flp">
+                            <div class="re"><p class="smp"><?= $j++; ?></p></div>
+                            <div class="fe">
+                                <p class="nm lo smp"><?= $student['title']; ?></p>
+                                <p class="nm lo smp"><?= $student['matric']; ?></p>
+                            </div>
+
+                            <div class="ge"><p class="smp"><?= $student['date_added']; ?></p></div>
+                            <div class="ae">
+                              <?php
+                                $supervisor = $student['superviser_no'];
+                                $sqls = "SELECT * FROM user WHERE user_number = '$supervisor'";
+                                $results = mysqli_query($conn, $sqls);
+                                $sup = mysqli_fetch_assoc($results);
+                                echo $sup['name'];
+                              ?> 
+                              
+                            </div>
+
+                            <div class="pe">
+                              <form action="../server/approve.php" method="POST" style="margin: 0px; padding: 0px;">
+                                <input type="hidden" name="id" value="<?= $student['id']; ?>">
+                                <input type="hidden" name="matric" value="<?= $student['matric']; ?>">
+                                <button type="submit" style="background-color: transparent; border: 0px;" name="approve"><span style="text-decoration: underline;">Approve</span></button>
+                              </form>
+                            </div>
+                        </div>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+
+            </div>    
 
 
         </div>
@@ -361,3 +400,8 @@
     <script src="code.js"></script>
 </body>
 </html>
+<?php
+  }else{
+      header("location:../login.php"); 
+  } 
+?>
