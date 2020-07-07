@@ -4,7 +4,8 @@
 	$msgClass = '';
 
 	//Connecting to the db
-	$conn = mysqli_connect('localhost', 'root', '', 'sysengr') or die('Uanble to connect to db');
+  	include ('../config/conn.php');
+	
 	
 	//Check that we actually have a submit button
 	if (isset($_POST['submit'])) {

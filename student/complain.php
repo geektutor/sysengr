@@ -38,7 +38,7 @@
               </div>
               <h1 class="comp">Complaint Form</h1>
               <?php if (isset($msg)) : ; ?>
-                <p class="<?php echo $msgClass; ?>"><?php echo $msg; ?></p>
+                <p class="<?= $msgClass; ?>"><?= $msg; ?></p>
               <?php endif; ?>
               <input id="email" class="email-input" type="email" placeholder="Enter your email..." required name="email">
               <p class="or">OR</p>
@@ -53,7 +53,7 @@
                 <?php include '../config/constants.php'; ?>
                 <select class="form-select" class="sender" name="reciever">
                   <?php foreach($lecturers as $name => $mail) : ; ?>
-                    <option value="<?php echo $mail; ?>"><?php echo $name; ?></option>
+                    <option value="<?= $mail; ?>"><?= $name; ?></option>
                   <?php endforeach; ?>
                   <option value="themanmail@gmail.com">Course Adviser</option>
                   <option value="mymail@gmail.com">Supervisor</option>

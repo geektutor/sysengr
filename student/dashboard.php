@@ -52,6 +52,20 @@
     <link rel="shortcut icon" href="../img/favicon.jpeg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+     .full-width{
+        margin: 0 auto; 
+        width: 90%;
+        display: none;
+      }
+      .full-width textarea{
+        width: 100%;
+        text-align: justify;
+      }
+      form{
+        padding-top: 0;
+      }
+    </style>
 </head>
 <body>
     <?php include ('../inc/inc_header.php'); ?>
@@ -125,7 +139,7 @@
 
                     <div class="col-lg-6 mb-3">
                       <label for="selc" style="font-size: medium; font-weight: bold;">Project Supervisor</label>
-                      <select name="superviser" id="">
+                      <select name="superviser">
                           <option value="">Select your supervisor</option>
                           <?php foreach ($staffs as $staff): ?>
                           <option value="<?=$staff['user_number'];?>"><?=$staff['name'];?></option>
@@ -135,7 +149,7 @@
 
                     <div class="col-lg-6 mb-3">
                       <label for="selc" style="font-size: medium; font-weight: bold;" >Course Adviser </label>
-                      <select name="adviser" id="">
+                      <select name="adviser">
                           <option value="">Select your adviser</option>
                           <?php foreach ($staffs as $staff): ?>
                           <option value="<?=$staff['user_number'];?>"><?=$staff['name'];?></option>
@@ -179,19 +193,19 @@
                         echo "Reviewed by Course Adviser";
                       } elseif ($item['status'] == 3) {
                         echo "Cleared";
+                      }else{
+                        echo "Rejected <button onclick='show(event, reason".$item['id']." )'>see why</button>";
                       }
                     ?>
                   </h1>
                   <h1 class="nan"><?= $item['date_added']; ?></h1>
-
+                </div>
+                <div id="reason<?=$item['id'];?>" class="full-width">
+                  <textarea class="" readonly=""><?=$item['comment']; ?></textarea>
                 </div>
               <?php endforeach; ?>
 
-
-
               <input type="submit" class="subba" value="Print Clearance">
-
-
             </div>
 
 
@@ -264,12 +278,22 @@
           </div>
         </div>
 
-      </footer>
+    </footer>
 
 
 
 
     <script type="text/javascript">
+
+        function show(event, id) {
+          event.preventDefault();
+          
+          if (id.style.display == "block") {
+            id.style.display = "none"
+          } else {
+            id.style.display="block"
+          }
+        }
 
         function toggleDropdow() {
                 let navbarToggle = document.getElementById("navt");

@@ -6,18 +6,18 @@
   if(isset( $_SESSION['login_user'])){
     $user_number = $_SESSION['user_number'];
 
+    //for supervisor
+    $sql = "SELECT * FROM clearance WHERE superviser_no = {$user_number} AND status = 0";
+    $result = mysqli_query($conn, $sql);
+    $std_supervisor = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result);
+
     //for course adviser
     $sql = "SELECT * FROM clearance WHERE adviser_no = {$user_number} AND status = 1";
     $result = mysqli_query($conn, $sql);
     $std_advisor = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);
 
-    //for supervisor
-    $sql = "SELECT * FROM clearance WHERE superviser_no = {$user_number} AND status = 0";
-    $result = mysqli_query($conn, $sql);
-    $std_supervisor = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    mysqli_free_result($result);
-    
     //for HOD 
     // $sql = "SELECT * FROM clearance WHERE status = 2";
     // $result = mysqli_query($conn, $sql);
@@ -42,7 +42,20 @@
     <link rel="stylesheet" href="../css/staffdashstyle.css">
     <link rel="stylesheet" href="../css/appstaff.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Source+Sans+Pro&display=swap" rel="stylesheet">
-
+    <style type="text/css">
+      .full-width{
+        margin: 0 auto; 
+        width: 90%;
+        display: none;
+      }
+      .full-width textarea{
+        width: 100%;
+        text-align: justify;
+      }
+      form{
+        padding-top: 0;
+      }
+    </style>
 
 </head>
 <body>
@@ -164,35 +177,82 @@
 
 
                 <button class="shepe"><h4>Logout</h4></button>
-
-
-
-
-
             </div>
-
-
-    </div>
+            </div>
 
 
         <div class="part2">
             <div class="dropdownLink" id="dropdownLink"><a onclick="toggleDropdow2()" href="javascript:;"><img src="../img/icon-close2.svg" alt="Img"> </a></div>
             <div class="dropdownLink2" id="dropdownLink2"><a onclick="toggleDropdow()" href="javascript:;"><img src="../img/chevron right.png" alt="Img"> </a></div>
 
-
-            <div class="overall">
-
-                <div class="continop">
+            
+             <div class="overall">
+                <?php if (isset($msg)): ?>
+                  <p class="<?= $msgClass; ?>"><?= $msg; ?></p>
+                <?php endif; ?>
+                 <div class="continop">
                     <div class="group3" ><h2> <a class="appr" href="approve.html">Approved request</a> <img src="../img/arrow forward icon.svg" alt=""></h2></div>
                     <div class="group3"><h2> Pending request(As a Supervisor) </h2></div>
-
                 </div>
+               
                 <div class="container2">
                     <div class="re"></div>
                     <div class="fe extra"><p class="nm smp" >Project Title / Name</p></div>
                     <div class="ge extra"><p class="smp">Date</p> </div>
                     <div class="ae extra" id="group"><p class="smp">Course adviser</p><img class="lock" src="../img/lock.png" alt=""> </div>
-                    <div class="pe extra"><p class="smp">Project supervisor</p> </div>
+                    <div class="pe extra"><p class="smp">Action</p> </div>
+                </div>
+
+                <div class="white-container">
+
+                    <?php if(isset($std_supervisor)) :  $j= 1; ?>
+                      <?php foreach($std_supervisor as $student) : ; ?>
+                        <div class="flp">
+                            <div class="re"><p class="smp"><?= $j++; ?></p></div>
+                            <div class="fe">
+                                <p class="nm lo smp"><?= $student['title']; ?></p>
+                                <p class="nm lo smp"><?= $student['matric']; ?></p>
+                            </div>
+
+                            <div class="ge"><p class="smp"><?= $student['date_added']; ?></p></div>
+                            <div class="ae">
+                              <?php
+                                $supervisor = $student['adviser_no'];
+                                $sqls = "SELECT * FROM user WHERE user_number = '$supervisor'";
+                                $results = mysqli_query($conn, $sqls);
+                                $sup = mysqli_fetch_assoc($results);
+                                echo $sup['name'];
+                              ?> 
+                              
+                            </div>
+
+                            <div class="pe">
+                              <form action="../server/approve.php" method="POST" style="margin: 0px; padding: 0px;">
+                                <input type="hidden" name="id" value="<?= $student['id']; ?>">
+                                <input type="hidden" name="matric" value="<?= $student['matric']; ?>">
+                                <button type="submit" style="background-color: transparent; border: 0px;" name="approve"><span style="text-decoration: underline;">Approve</span></button>
+                              </form>
+                            </div>
+                        </div>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+
+            </div>  
+
+            <div class="overall">
+                <?php if (isset($error)): ?>
+                  <p class="<?= $error[0]; ?>"><?= $error[1]; ?></p>
+                <?php endif; ?>
+                <div class="continop">
+                    <div class="group3"><h2> Pending request (As a course adviser)</h2></div>
+                </div>
+                <div class="container2">
+                    <div class="re"></div>
+                    <div class="fe extra"><p class="nm smp" >Project Title / Name</p></div>
+                    <div class="ge extra"><p class="smp">Date</p> </div>
+                    <div class="ae extra" id="group"><p class="smp">Project supervisor</p><img class="lock" src="../img/lock.png" alt=""> </div>
+                    <div class="pe extra"><p class="smp">Action</p></div>
                 </div>
 
                 <div class="white-container">
@@ -215,7 +275,6 @@
                                 $sup = mysqli_fetch_assoc($results);
                                 echo $sup['name'];
                               ?> 
-                              
                             </div>
 
                             <div class="pe">
@@ -224,63 +283,23 @@
                                 <input type="hidden" name="matric" value="<?= $student['matric']; ?>">
                                 <button type="submit" style="background-color: transparent; border: 0px;" name="approve"><span style="text-decoration: underline;">Approve</span></button>
                               </form>
+                                <button type="submit" style="background-color: transparent; border: 0px;" name="reject"><span onclick="reject(event, reject<?=$student['id'];?>)">Reject</span></button>
                             </div>
                         </div>
+                        <form method="POST" action="../server/approve.php" id="reject<?=$student['id'];?>" class="full-width reject<?=$student['id'];?>">
+                          <input type="hidden" name="id" value="<?= $student['id']; ?>">
+                          <input type="hidden" name="matric" value="<?= $student['matric']; ?>">
+                          <textarea name="comment" rows="5" placeholder=" Enter a comment"></textarea>
+                          <button type="submit" name="reject">Submit</button>
+                        </form>  
+                        
                       <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
 
             </div>
 
-              <div class="overall">
-
-                <div class="continop">
-                    <div class="group3"><h2> Pending request (As a course adviser)</h2></div>
-                </div>
-                <div class="container2">
-                    <div class="re"></div>
-                    <div class="fe extra"><p class="nm smp" >Project Title / Name</p></div>
-                    <div class="ge extra"><p class="smp">Date</p> </div>
-                    <div class="ae extra" id="group"><p class="smp">Course adviser</p><img class="lock" src="../img/lock.png" alt=""> </div>
-                    <div class="pe extra"><p class="smp">Project supervisor</p> </div>
-                </div>
-
-                <div class="white-container">
-
-                    <?php if(isset($std_supervisor)) :  $j= 1; ?>
-                      <?php foreach($std_supervisor as $student) : ; ?>
-                        <div class="flp">
-                            <div class="re"><p class="smp"><?= $j++; ?></p></div>
-                            <div class="fe">
-                                <p class="nm lo smp"><?= $student['title']; ?></p>
-                                <p class="nm lo smp"><?= $student['matric']; ?></p>
-                            </div>
-
-                            <div class="ge"><p class="smp"><?= $student['date_added']; ?></p></div>
-                            <div class="ae">
-                              <?php
-                                $supervisor = $student['superviser_no'];
-                                $sqls = "SELECT * FROM user WHERE user_number = '$supervisor'";
-                                $results = mysqli_query($conn, $sqls);
-                                $sup = mysqli_fetch_assoc($results);
-                                echo $sup['name'];
-                              ?> 
-                              
-                            </div>
-
-                            <div class="pe">
-                              <form action="../server/approve.php" method="POST" style="margin: 0px; padding: 0px;">
-                                <input type="hidden" name="id" value="<?= $student['id']; ?>">
-                                <input type="hidden" name="matric" value="<?= $student['matric']; ?>">
-                                <button type="submit" style="background-color: transparent; border: 0px;" name="approve"><span style="text-decoration: underline;">Approve</span></button>
-                              </form>
-                            </div>
-                        </div>
-                      <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>
-
-            </div>    
+               
 
 
         </div>
@@ -357,6 +376,14 @@
 
 
     <script type="text/javascript">
+      function reject(event, id) {
+        event.preventDefault();
+        if (id.style.display == "block") {
+          id.style.display = "none"
+        } else {
+          id.style.display="block"
+        }
+      }
 
     function toggleDropdow() {
             let navbarToggle = document.getElementById("navt");
