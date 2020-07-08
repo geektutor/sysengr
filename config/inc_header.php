@@ -3,7 +3,7 @@
           <div class="header-flex">
             <div class="logo-container">
               <img class="logos" src="../img/sys.png" alt="Logo">
-              <img class="logos" src="../img/lag.png" alt="Logo">
+              <img class="logos" src="../img/uni.png" alt="Logo">
               <div class="header-text">
                 <p class="dept">DEPARTMENT OF SYSTEMS ENGINEERING</p>
                 <h1 class="uni">UNIVERSITY OF LAGOS</h1>
@@ -12,8 +12,8 @@
 
             <div class="login-links">
               <ul class="login-list">
-                <li class="login-list-item"><a href="#">Staff</a></li>
-                <li class="login-list-item"><a href="#">Students</a></li>
+                <li class="login-list-item"><a href="staff/">Staff</a></li>
+                <li class="login-list-item"><a href="student/">Students</a></li>
                 <li class="login-list-item"><a href="#">Alumni</a></li>
               </ul>
             </div>
@@ -39,9 +39,9 @@
       <nav class="navbar" id="navbar-toggle">
         <div class="container">
           <ul class="navbar-list" id="nav-list">
-            <li class="nav-list-item"><a href="dashboard.php">Dashboard</a></li>
-            <li class="nav-list-item none"><a href="#">Home</a></li>
-            <li class="nav-list-item"><a href="#">Gallery</a></li>
+            <li class="nav-list-item"><a href="login/">Dashboard</a></li>
+            <li class="nav-list-item none"><a href="https://unilagsysegr.com">Home</a></li>
+            <li class="nav-list-item"><a href="gallery/">Gallery</a></li>
             <li class="nav-list-item"><a href="#">Projects</a></li>
             <li class="dropDown">
               <button class="drop-btn top">Programs <img class="drop" src="../img/chevron.svg"/></button>
@@ -64,8 +64,8 @@
             <li class="nav-list-item"><a href="../logout.php">Logout</a></li>
             <div class="line"></div>
 
-            <li class="top student"><a href="#">Students</a></li>
-            <li class="top"><a href="#">Staff</a></li>
+            <li class="top student"><a href="student/">Students</a></li>
+            <li class="top"><a href="staff/">Staff</a></li>
             <li class="top"><a href="#">Alumni</a></li>
           </ul>
         </div>
