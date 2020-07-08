@@ -22,14 +22,14 @@
 			if ($email) {
 				$sql = "INSERT INTO complaints (email, complaint, reciever) VALUES ('$email', '$complaint', '$reciever')" or die('Cannot insert');
 				$result = mysqli_query($conn, $sql) or die('Cannot write to db');
-				mail('zubairidrisaweda@gmail.com', 'Complaint', $complaint, 'From: '.$email);
+				mail('sodiq.akinjobi@gmail.com', 'Complaint', $complaint, 'From: '.$email);
 			} else {
 				$sql = "INSERT INTO complaints (email, complaint, reciever) VALUES ('Anonymous', '$complaint', '$reciever')" or die('Cannot insert');
 				$result = mysqli_query($conn, $sql) or die('Cannot write to db');
-				mail('zubairidrisaweda@gmail.com', 'Complaint', $complaint, 'From: Anonymous');
+				mail('sodiq.akinjobi@gmail.com', 'Complaint', $complaint, 'From: Anonymous');
 			}
 
-			header('Location: ../'.$who.'/complain.html');
+			header('Location: ../'.$who.'/dashboard.php');
 
 		};
 

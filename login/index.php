@@ -1,5 +1,5 @@
 <?php
-    include ('config/conn.php');
+    include ('../config/conn.php');
 
     if (isset($_POST['login'])) {
         
@@ -14,11 +14,11 @@
             $sql = "SELECT * FROM user WHERE user_number = '$number'";
             $result = mysqli_query($conn, $sql) or die('Unable to fetch data from database');
             $user = mysqli_fetch_assoc($result);
-            mysqli_free_result($result);
-            mysqli_close($conn);
+            // mysqli_free_result($result);
+            // mysqli_close($conn);
 
             if ($user == '') {
-                $msg = 'Student Not Found';
+                $msg = 'Student/Staff Not Found';
                 $msgClass = 'alert alert-danger';
             
             } else {
@@ -29,9 +29,9 @@
                     $_SESSION['login_user'] = $user['user_number'];
                     $_SESSION['current_user'] = $user['name'];
                     if ($user['type'] == 0) {
-                        header('Location: student/dashboard.php');
+                        header('Location: ../student/index.php');
                     }else if($user['type'] == 2){
-                        header('Location: staff/dashboard.php');
+                        header('Location: ../staff/index.php');
                     }
                 } else {
                     $msg = 'Incorrect Password';
@@ -55,8 +55,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="icon" href="img/logo.png" sizes="16*16">
-    <link rel="stylesheet" href="css/stylestudent.css">
+    <link rel="icon" href="../img/logo.png" sizes="16*16">
+    <link rel="stylesheet" href="../css/stylestudent.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <style>
         .alert {
@@ -69,10 +69,10 @@
 <body>                                                                                                                                            
     <div class="box">
         
-        <p class="signin">Student Login</p>
+        <p class="signin">Access Login</p>
         <div class="signin-row">
-            <img class="logo" alt="" src="img/lag.png"/>
-            <img class="logo" alt="" src="img/logo.png"/>
+            <img class="logo" alt="" src="../img/lag.png"/>
+            <img class="logo" alt="" src="../img/logo.png"/>
         </div>
         <p class="signin-tex">UNIVERSITY OF LAGOS</p>
         <p class="signin-text">DEPARTMENT OF SYSTEM ENGINEERING</p>
