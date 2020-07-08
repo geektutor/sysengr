@@ -132,7 +132,7 @@
                 <?php endif; ?>
                  <div class="continop">
                     <div class="group3" ><h2> <a class="appr" href="approve.html">Approved request</a> <img src="../img/arrow forward icon.svg" alt=""></h2></div>
-                    <div class="group3"><h2> Pending request(As a Supervisor) </h2></div>
+                    <div class="group3"><h2> Pending request </h2></div>
                 </div>
                
                 <div class="container2">

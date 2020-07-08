@@ -46,7 +46,7 @@
                 <input id="checkbox" type="checkbox"> <p class="anonymous">Send as anonymous</p>
               </div>
               <input type="hidden" name="who" value="student">
-              <a class="dasho" href="dashboard.html">To dashboard</a>
+              <a class="dasho" href="index.php">To dashboard</a>
               <textarea rows="8" cols="80" placeholder="Enter complaint..." required name="complaint"></textarea>
               <div class="submit-container">
                 <p class="paragraph">Send to: </p>
@@ -55,8 +55,6 @@
                   <?php foreach($lecturers as $name => $mail) : ; ?>
                     <option value="<?= $mail; ?>"><?= $name; ?></option>
                   <?php endforeach; ?>
-                  <option value="themanmail@gmail.com">Course Adviser</option>
-                  <option value="mymail@gmail.com">Supervisor</option>
                   <input class="btn" type="submit" value="SUBMIT" name="submit">
                   
                 </select>
