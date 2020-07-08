@@ -13,7 +13,7 @@
     <title>Systems Engineering Website</title>
   </head>
   <body>
-    <?php include ('inc/inc_header.php'); ?>
+    <?php include ('config/inc_header.php'); ?>
 
     <section class="my-carousel">
       <div class="owl-container">
