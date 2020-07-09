@@ -1,8 +1,8 @@
 <?php
 	include ('conn.php');
-	$hod_mail = 'test@test.com';
-	$superviser_mail = 'mumu@mumu.com';
-	$course_adviser_mail = 'zubairidrisaweda@gmail.com';
+	$hod_mail = 'sodiq.akinjobi@gmail.com';
+	$superviser_mail = 'sodiq.akinjobi@gmail.com';
+	$course_adviser_mail = 'sodiq.akinjobi@gmail.com';
 
 	$sql2 = "SELECT * FROM user WHERE type != 0";
   	$result2 = mysqli_query($conn, $sql2);

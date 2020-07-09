@@ -29,23 +29,12 @@
 
   $sql1 = "SELECT * FROM clearance WHERE matric = {$user_number}";
   $result1 = mysqli_query($conn, $sql1);
-  $count = mysqli_num_rows($result1);
-  if($count > 0){
-    while($row = mysqli_fetch_assoc($result1)) {
-        $attempts[] = $row;      
-    }
-  }
+  $attempts = mysqli_fetch_all($result1, MYSQLI_ASSOC);
   mysqli_free_result($result1);
 
   $sql2 = "SELECT * FROM user WHERE type != 0";
   $result2 = mysqli_query($conn, $sql2);
-  $count2 = mysqli_num_rows($result2);
-  if($count2 > 0){
-    while($row2 = mysqli_fetch_assoc($result2)) {
-        $staffs[] = $row2;      
-    }
-  }
-  
+  $staffs = mysqli_fetch_all($result2, MYSQLI_ASSOC);
   mysqli_free_result($result2);
 
   // mysqli_close($conn);
@@ -78,7 +67,7 @@
     </style>
 </head>
 <body>
-<?php include ('../config/inc_header.php'); ?>
+    <?php include ('../inc/inc_header.php'); ?>
 
     <div class="flex">
         <div class="my-flex" id="navt">
@@ -122,8 +111,17 @@
                     </div>
                     <p class="txt">Complaint</p></a>
                 </div>
+
+
                 <a href="../logout.php"><button class="shepe"><h4>Logout</h4></button></a>
+
+
+
+
+
             </div>
+
+
     </div>
 
 
@@ -208,16 +206,69 @@
 
               <input type="submit" class="subba" value="Print Clearance">
             </div>
+
+
+
         </div>
     </div>
-
+    
     <?php include ('../config/inc_footer.php'); ?>
-    <script src="code2.js"></script>
+    <script type="text/javascript">
+
+        function show(event, id) {
+          event.preventDefault();
+          
+          if (id.style.display == "block") {
+            id.style.display = "none"
+          } else {
+            id.style.display="block"
+          }
+        }
+
+        function toggleDropdow() {
+                let navbarToggle = document.getElementById("navt");
+                if (navbarToggle.className === 'my-flex') {
+                    navbarToggle.className = 'respod';
+                    document.getElementById("dropdownLink").style.display="block";
+
+                } else if (navbarToggle.className === 'respod') {
+                  navbarToggle.className += ' oya';
+
+                } else if (navbarToggle.className === 'respod oya') {
+                  navbarToggle.className = 'respod';
+                  document.getElementById("dropdownLink").style.display="block";
+                }
+
+            }
+        function toggleDropdow2() {
+                let navbarToggle = document.getElementById("navt");
+                if (navbarToggle.className === 'my-flex') {
+                    navbarToggle.className = 'respod';
+                    document.getElementById("dropdownLink").style.display="block";
+
+                } else if (navbarToggle.className === 'respod') {
+                  navbarToggle.className += ' oya';
+                  document.getElementById("dropdownLink").style.display="none";
+                } else if (navbarToggle.className === 'respod oya') {
+                  navbarToggle.className = 'respod';
+                  document.getElementById("dropdownLink").style.display="none";
+
+                }
+
+                else {
+                    navbarToggle.className = 'my-flex';
+                    document.getElementById("dropdownLink").style.display="none";
+                }
+
+            }
+
+
+    </script>
     <script src="code.js"></script>
 </body>
 </html>
 <?php
   }else{
-      header("location:../login/index.php"); 
+      header("location:../login.php"); 
   } 
 ?>
