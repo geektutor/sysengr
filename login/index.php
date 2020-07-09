@@ -30,7 +30,10 @@
                     $_SESSION['current_user'] = $user['name'];
                     if ($user['type'] == 0) {
                         header('Location: ../student/index.php');
-                    }else if($user['type'] == 2){
+                    }else if($user['type'] !== 0){
+                        if ($user['type'] == 3) {
+                            $_SESSION['hod'] = true;
+                        }
                         header('Location: ../staff/index.php');
                     }
                 } else {

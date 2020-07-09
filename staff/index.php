@@ -1,7 +1,7 @@
 <?php
   include ('../config/conn.php');
   include ('../config/session.php');
-
+  // var_dump("expression"); die;
   $user_number = $_SESSION['user_number'];
   if(isset( $_SESSION['login_user'])){
     $user_number = $_SESSION['user_number'];
@@ -20,6 +20,7 @@
     //for course adviser
     $sql = "SELECT * FROM clearance WHERE adviser_no = {$user_number} AND status = 1";
     $result = mysqli_query($conn, $sql);
+    $count = mysqli_num_rows($result);
     if($count > 0){
         while($row = mysqli_fetch_assoc($result)) {
             $std_advisor[] = $row;      
@@ -28,17 +29,23 @@
     mysqli_free_result($result);
 
     //for HOD 
-    // $sql = "SELECT * FROM clearance WHERE status = 2";
-    // $result = mysqli_query($conn, $sql);
-    // $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    // mysqli_free_result($result);
-    // $students = $students1;
+    $sql = "SELECT * FROM clearance WHERE status = 2";
+    $result = mysqli_query($conn, $sql);
+    $count = mysqli_num_rows($result);
+    if($count > 0){
+        while($row = mysqli_fetch_assoc($result)) {
+            $std_hod[] = $row;      
+        }
+    }
+    mysqli_free_result($result);
     
     $sql2 = "SELECT * FROM user WHERE user_number = {$user_number}";
     $result2 = mysqli_query($conn, $sql2);
     $current_user = mysqli_fetch_assoc($result2);
 
     // mysqli_close($conn);
+
+    // var_dump($_SESSION['hod']);
 
 ?>
 <!DOCTYPE html>
@@ -131,7 +138,7 @@
                   <p class="<?= $msgClass; ?>"><?= $msg; ?></p>
                 <?php endif; ?>
                  <div class="continop">
-                    <div class="group3" ><h2> <a class="appr" href="approve.html">Approved request</a> <img src="../img/arrow forward icon.svg" alt=""></h2></div>
+                    <div class="group3" ><h2> <a class="appr" href="approve.php">Approved request</a> <img src="../img/arrow forward icon.svg" alt=""></h2></div>
                     <div class="group3"><h2> Pending request </h2></div>
                 </div>
                
@@ -178,8 +185,10 @@
                     <?php endif; ?>
                 </div>
 
-            </div>  
-
+            </div>
+            <?php
+              if (!isset($_SESSION['hod'])) {
+            ?>
             <div class="overall">
                 <?php if (isset($error)): ?>
                   <p class="<?= $error[0]; ?>"><?= $error[1]; ?></p>
@@ -238,9 +247,68 @@
                 </div>
 
             </div>
+            <?php }else{ ?>
 
-               
+              <div class="overall">
+                <?php if (isset($error)): ?>
+                  <p class="<?= $error[0]; ?>"><?= $error[1]; ?></p>
+                <?php endif; ?>
+                <div class="continop">
+                    <div class="group3"><h2> Pending request (As a HOD)</h2></div>
+                </div>
+                <div class="container2">
+                    <div class="re"></div>
+                    <div class="fe extra"><p class="nm smp" >Project Title / Name</p></div>
+                    <div class="ge extra"><p class="smp">Date</p> </div>
+                    <div class="ae extra" id="group"><p class="smp">Project supervisor</p><img class="lock" src="../img/lock.png" alt=""> </div>
+                    <div class="pe extra"><p class="smp">Action</p></div>
+                </div>
 
+                <div class="white-container">
+
+                    <?php if(isset($std_hod)) :  $j= 1; ?>
+                      <?php foreach($std_hod as $student) : ; ?>
+                        <div class="flp">
+                            <div class="re"><p class="smp"><?= $j++; ?></p></div>
+                            <div class="fe">
+                                <p class="nm lo smp"><?= $student['title']; ?></p>
+                                <p class="nm lo smp"><?= $student['matric']; ?></p>
+                            </div>
+
+                            <div class="ge"><p class="smp"><?= $student['date_added']; ?></p></div>
+                            <div class="ae">
+                              <?php
+                                $supervisor = $student['superviser_no'];
+                                $sqls = "SELECT * FROM user WHERE user_number = '$supervisor'";
+                                $results = mysqli_query($conn, $sqls);
+                                $sup = mysqli_fetch_assoc($results);
+                                echo $sup['name'];
+                              ?> 
+                            </div>
+
+                            <div class="pe">
+                              <form action="../server/approve.php" method="POST" style="margin: 0px; padding: 0px;">
+                                <input type="hidden" name="id" value="<?= $student['id']; ?>">
+                                <input type="hidden" name="matric" value="<?= $student['matric']; ?>">
+                                <button type="submit" style="background-color: transparent; border: 0px;" name="approve"><span style="text-decoration: underline;">Approve</span></button>
+                              </form>
+                                <button type="submit" style="background-color: transparent; border: 0px;" name="reject"><span onclick="reject(event, reject<?=$student['id'];?>)">Reject</span></button>
+                            </div>
+                        </div>
+                        <form method="POST" action="../server/approve.php" id="reject<?=$student['id'];?>" class="full-width reject<?=$student['id'];?>">
+                          <input type="hidden" name="id" value="<?= $student['id']; ?>">
+                          <input type="hidden" name="matric" value="<?= $student['matric']; ?>">
+                          <textarea name="comment" rows="5" placeholder=" Enter a comment"></textarea>
+                          <button type="submit" name="reject">Submit</button>
+                        </form>  
+                        
+                      <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+
+            </div>
+
+            <?php } ?>   
 
         </div>
     </div>

@@ -20,7 +20,7 @@
   	$query2 = "UPDATE clearance SET status = {$new_status} WHERE id = {$id} AND matric = {$matric}";
 
     if($conn->query($query2)){
-      header('Location: ../staff/dashboard.php');
+      header('Location: ../staff/index.php');
     }else{
       $msg = 'Clearance Submitted Successfully';
       $msgClass = 'alert alert-success';
