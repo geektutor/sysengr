@@ -52,8 +52,8 @@
                 <p class="paragraph">Send to: </p>
                 <?php include '../config/constants.php'; ?>
                 <select class="form-select" class="sender" name="reciever">
-                  <?php foreach($lecturers as $name => $mail) : ; ?>
-                    <option value="<?= $mail; ?>"><?= $name; ?></option>
+                  <?php foreach($lecturers as $lecturer) : ; ?>
+                    <option value="<?= $lecturer['email']; ?>"><?= $lecturer['name']; ?></option>
                   <?php endforeach; ?>
                   <input class="btn" type="submit" value="SUBMIT" name="submit">
                   
