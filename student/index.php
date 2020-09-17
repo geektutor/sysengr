@@ -27,15 +27,15 @@
     }
   }
 
-  $sql1 = "SELECT * FROM clearance WHERE matric = {$user_number}";
+  $sql1 = "SELECT * FROM clearance WHERE matric = '$user_number'";
   $result1 = mysqli_query($conn, $sql1);
   $attempts = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-  mysqli_free_result($result1);
+//   mysqli_free_result($result1);
 
   $sql2 = "SELECT * FROM user WHERE type != 0";
   $result2 = mysqli_query($conn, $sql2);
   $staffs = mysqli_fetch_all($result2, MYSQLI_ASSOC);
-  mysqli_free_result($result2);
+//   mysqli_free_result($result2);
 
   // mysqli_close($conn);
 
