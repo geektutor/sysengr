@@ -29,7 +29,8 @@
 
   $sql1 = "SELECT * FROM clearance WHERE matric = '$user_number'";
   $result1 = mysqli_query($conn, $sql1);
-  $attempts = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+//   $attempts = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+  $attempts = mysqli_fetch_assoc($result1);
 //   mysqli_free_result($result1);
 
   $sql2 = "SELECT * FROM user WHERE type != 0";
